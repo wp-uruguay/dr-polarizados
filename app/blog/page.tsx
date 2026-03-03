@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -66,15 +67,21 @@ export default async function BlogPage() {
         <div className="grid grid-3" style={{ marginTop: "1.6rem" }}>
           {posts.length > 0 ? (
             posts.map((post) => (
-              <article className="card" key={post.id}>
-                <p style={{ color: "#7a7a7a", fontSize: ".82rem" }}>
-                  {formatDate(post.date)}
-                </p>
-                <h3 style={{ marginTop: ".25rem" }}>
-                  {stripHtml(post.title.rendered)}
-                </h3>
-                <p>{stripHtml(post.excerpt.rendered)}</p>
-              </article>
+              <Link
+                href={`/blog/${post.slug}`}
+                key={post.id}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <article className="card" style={{ cursor: "pointer", height: "100%" }}>
+                  <p style={{ color: "#7a7a7a", fontSize: ".82rem" }}>
+                    {formatDate(post.date)}
+                  </p>
+                  <h3 style={{ marginTop: ".25rem" }}>
+                    {stripHtml(post.title.rendered)}
+                  </h3>
+                  <p>{stripHtml(post.excerpt.rendered)}</p>
+                </article>
+              </Link>
             ))
           ) : (
             <p style={{ gridColumn: "1 / -1" }}>No hay publicaciones disponibles</p>
