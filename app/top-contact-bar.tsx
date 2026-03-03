@@ -11,7 +11,7 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const WHATSAPP_PHONE = "5491168477185";
 
@@ -19,23 +19,11 @@ export default function TopContactBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [drawerMessage, setDrawerMessage] = useState("");
-  const [isHeaderPinned, setIsHeaderPinned] = useState(false);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
       setIsScrolled(currentY > 70);
-
-      if (currentY <= 70) {
-        setIsHeaderPinned(false);
-      } else if (currentY < lastScrollY.current) {
-        setIsHeaderPinned(true);
-      } else if (currentY > lastScrollY.current) {
-        setIsHeaderPinned(false);
-      }
-
-      lastScrollY.current = currentY;
     };
 
     handleScroll();
@@ -45,14 +33,6 @@ export default function TopContactBar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    document.body.classList.toggle("header-pinned", isHeaderPinned);
-
-    return () => {
-      document.body.classList.remove("header-pinned");
-    };
-  }, [isHeaderPinned]);
 
   useEffect(() => {
     document.body.classList.toggle("drawer-open", isDrawerOpen);
@@ -129,6 +109,14 @@ export default function TopContactBar() {
                 aria-label="LinkedIn"
               >
                 <Linkedin size={14} aria-hidden />
+              </a>
+              <a
+                href="https://www.x.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="X (Twitter)"
+              >
+                <X size={14} aria-hidden />
               </a>
             </div>
           </div>

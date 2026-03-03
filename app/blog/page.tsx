@@ -6,28 +6,53 @@ export const metadata: Metadata = {
     "Blog de Dr Polarizados con guias y tendencias sobre laminas de polarizar.",
 };
 
-const posts = [
-  {
-    title: "Como elegir el VLT correcto para cada vehiculo",
-    excerpt:
-      "Resumen practico para recomendar transparencia segun uso, ciudad y nivel de confort esperado.",
-    date: "Febrero 2026",
-  },
-  {
-    title: "Errores comunes al instalar laminas en vidrio curvo",
-    excerpt:
-      "Buenas practicas para reducir retrabajos y mejorar terminacion en instalaciones exigentes.",
-    date: "Enero 2026",
-  },
-  {
-    title: "Tendencias en control solar para oficinas y retail",
-    excerpt:
-      "Que estan pidiendo hoy los proyectos arquitectonicos y como cotizar valor, no solo precio.",
-    date: "Enero 2026",
-  },
-];
+interface BlogPost {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  excerpt: {
+    rendered: string;
+  };
+  date: string;
+  slug: string;
+}
 
-export default function BlogPage() {
+async function getBlogPosts() {
+  try {
+    const response = await fetch(
+      "https://backend.drpolarizados.com/wp-json/wp/v2/posts",
+      { next: { revalidate: 3600 } }
+    );
+
+    if (!response.ok) {
+      throw new Error("Error fetching posts");
+    }
+
+    const posts: BlogPost[] = await response.json();
+    return posts;
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    return [];
+  }
+}
+
+function stripHtml(html: string) {
+  return html.replace(/<[^>]*>/g, "").trim();
+}
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+export default async function BlogPage() {
+  const posts = await getBlogPosts();
+
   return (
     <section className="section">
       <div className="container">
@@ -39,13 +64,21 @@ export default function BlogPage() {
         </p>
 
         <div className="grid grid-3" style={{ marginTop: "1.6rem" }}>
-          {posts.map((post) => (
-            <article className="card" key={post.title}>
-              <p style={{ color: "#7a7a7a", fontSize: ".82rem" }}>{post.date}</p>
-              <h3 style={{ marginTop: ".25rem" }}>{post.title}</h3>
-              <p>{post.excerpt}</p>
-            </article>
-          ))}
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <article className="card" key={post.id}>
+                <p style={{ color: "#7a7a7a", fontSize: ".82rem" }}>
+                  {formatDate(post.date)}
+                </p>
+                <h3 style={{ marginTop: ".25rem" }}>
+                  {stripHtml(post.title.rendered)}
+                </h3>
+                <p>{stripHtml(post.excerpt.rendered)}</p>
+              </article>
+            ))
+          ) : (
+            <p style={{ gridColumn: "1 / -1" }}>No hay publicaciones disponibles</p>
+          )}
         </div>
       </div>
     </section>

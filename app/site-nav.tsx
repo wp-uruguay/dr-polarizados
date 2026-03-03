@@ -1,11 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown, ShoppingCart, Users, Package, Glasses } from "lucide-react";
+import { useState, useRef } from "react";
 
 export default function SiteNav() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const productItems = [
+    {
+      href: "/productos",
+      title: "Ver Catálogo",
+      description: "Explorar todos nuestros productos",
+      icon: ShoppingCart,
+    },
+    {
+      href: "/mayoristas",
+      title: "Para Mayoristas",
+      description: "Soluciones para distribuidores y revendedores",
+      icon: Users,
+    },
+    {
+      href: "/marca-blanca",
+      title: "Marca Blanca",
+      description: "Personalizamos productos con tu marca",
+      icon: Package,
+    },
+  ];
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    setOpenDropdown("productos");
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 150);
+  };
 
   return (
     <nav className="site-nav" aria-label="Principal">
@@ -13,8 +48,8 @@ export default function SiteNav() {
       
       <div
         className="nav-dropdown"
-        onMouseEnter={() => setOpenDropdown("productos")}
-        onMouseLeave={() => setOpenDropdown(null)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         style={{ position: "relative" }}
       >
         <button
@@ -43,74 +78,21 @@ export default function SiteNav() {
         </button>
 
         {openDropdown === "productos" && (
-          <div
-            className="nav-dropdown-menu"
-            style={{
-              position: "absolute",
-              top: "100%",
-              left: 0,
-              backgroundColor: "var(--surface)",
-              border: "1px solid var(--line)",
-              borderRadius: "0.5rem",
-              marginTop: "0.5rem",
-              minWidth: "200px",
-              zIndex: 100,
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-            }}
-          >
-            <Link
-              href="/productos"
-              style={{
-                display: "block",
-                padding: "0.75rem 1rem",
-                color: "inherit",
-                textDecoration: "none",
-                borderBottom: "1px solid var(--line)",
-              }}
-              onMouseEnter={(e) => {
-                (e.target as HTMLElement).style.backgroundColor = "var(--surface-2)";
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.backgroundColor = "transparent";
-              }}
-            >
-              Ver catálogo
-            </Link>
-            <Link
-              href="/mayoristas"
-              style={{
-                display: "block",
-                padding: "0.75rem 1rem",
-                color: "inherit",
-                textDecoration: "none",
-                borderBottom: "1px solid var(--line)",
-              }}
-              onMouseEnter={(e) => {
-                (e.target as HTMLElement).style.backgroundColor = "var(--surface-2)";
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.backgroundColor = "transparent";
-              }}
-            >
-              Para mayoristas
-            </Link>
-            <Link
-              href="/marca-blanca"
-              style={{
-                display: "block",
-                padding: "0.75rem 1rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.target as HTMLElement).style.backgroundColor = "var(--surface-2)";
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.backgroundColor = "transparent";
-              }}
-            >
-              Marca Blanca
-            </Link>
+          <div className="nav-megamenu">
+            {productItems.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <Link key={item.href} href={item.href} className="megamenu-item">
+                  <div className="megamenu-icon">
+                    <IconComponent size={24} />
+                  </div>
+                  <div className="megamenu-content">
+                    <h3 className="megamenu-title">{item.title}</h3>
+                    <p className="megamenu-description">{item.description}</p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
