@@ -66,9 +66,14 @@ export default function ShareTab({ slug, title }: ShareTabProps) {
           <Share2 size={20} />
         </button>
 
+        {/* Overlay */}
+        {isOpen && (
+          <div className="share-overlay" onClick={() => setIsOpen(false)} />
+        )}
+
         {/* Share Menu */}
         {isOpen && (
-          <div className="share-menu">
+          <div className="share-menu" onClick={(e) => e.stopPropagation()}>
             {shareLinks.map((link) => {
               const IconComponent = link.icon;
               return (
