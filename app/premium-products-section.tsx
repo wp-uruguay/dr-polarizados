@@ -1,4 +1,26 @@
-const premiumCards = [
+"use client";
+
+import Link from "next/link";
+import { Building2, Car, Shield, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+export type PremiumCardIcon = "shield" | "car" | "building2";
+
+export type PremiumCard = {
+  title: string;
+  description: string;
+  highlight?: boolean;
+  icon?: PremiumCardIcon;
+  href?: string;
+};
+
+const iconMap = {
+  building2: Building2,
+  car: Car,
+  shield: Shield,
+} as const;
+
+const defaultPremiumCards: PremiumCard[] = [
   {
     title: "Importacion directa",
     description:
@@ -19,37 +41,116 @@ const premiumCards = [
   },
 ];
 
-export default function PremiumProductsSection() {
-  const loopCards = [...premiumCards, ...premiumCards];
+type PremiumProductsSectionProps = {
+  title?: string;
+  cards?: PremiumCard[];
+};
+
+export default function PremiumProductsSection({
+  title = "Productos premium",
+  cards = defaultPremiumCards,
+}: PremiumProductsSectionProps) {
+  const loopCards = [...cards, ...cards];
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const sectionElement = sectionRef.current;
+    if (!sectionElement) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (!entry?.isIntersecting) {
+          return;
+        }
+        setIsVisible(true);
+        observer.disconnect();
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    observer.observe(sectionElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
-    <section className="section">
+    <section
+      ref={sectionRef}
+      className={`section premium-products-section${isVisible ? " premium-products--visible" : ""}`}
+    >
       <div className="container premium-products">
-        <h2 className="premium-title">Productos premium</h2>
+        <h2 className="premium-title">{title}</h2>
 
         <div className="premium-grid">
-          {premiumCards.map((card) => (
-            <article
-              className={`card${card.highlight ? " highlight" : ""}`}
-              key={card.title}
-            >
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-            </article>
-          ))}
+          {cards.map((card) => {
+            const Icon = card.icon ? iconMap[card.icon] : null;
+
+            return (
+              <article
+                className={`card premium-card-item${card.highlight ? " highlight" : ""}`}
+                key={card.title}
+              >
+                {Icon ? (
+                  <span className="premium-card-icon" aria-hidden>
+                    <Icon size={22} />
+                  </span>
+                ) : null}
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+                {card.href && (
+                  <Link href={card.href} className="premium-card-link">
+                    <ChevronRight size={16} />
+                    Ver
+                  </Link>
+                )}
+              </article>
+            );
+          })}
         </div>
 
         <div className="premium-carousel-shell" aria-label="Productos premium">
           <div className="premium-carousel-track">
-            {loopCards.map((card, idx) => (
-              <article
-                className={`card premium-card${card.highlight ? " highlight" : ""}`}
-                key={`${card.title}-${idx}`}
-              >
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
-              </article>
-            ))}
+            {loopCards.map((card, idx) => {
+              const Icon = card.icon ? iconMap[card.icon] : null;
+
+              return (
+                <article
+                  className={`card premium-card premium-card-item${card.highlight ? " highlight" : ""}`}
+                  key={`${card.title}-${idx}`}
+                >
+                  {Icon ? (
+                    <span className="premium-card-icon" aria-hidden>
+                      <Icon size={20} />
+                    </span>
+                  ) : null}
+                  <h3>{card.title}</h3>
+                  <p>{card.description}</p>
+                  {card.href && (
+                    <Link href={card.href} className="premium-card-link">
+                      <ChevronRight size={16} />
+                      Ver
+                    </Link>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>

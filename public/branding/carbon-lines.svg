@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none">
+  <defs>
+    <pattern id="carbon" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M-12 24L24 -12M0 36L36 0M12 48L48 12" stroke="#000" stroke-width="1" />
+      <path
+        d="M-12 0L24 36M0 -12L36 24M12 -24L48 12"
+        stroke="#000"
+        stroke-width="0.65"
+        opacity="0.55"
+      />
+    </pattern>
+  </defs>
+  <rect width="240" height="240" fill="url(#carbon)" />
+</svg>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type ThemeMode = "dark" | "light";
@@ -31,7 +32,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-label="Cambiar tema"
     >
-      <span>{theme === "dark" ? "Claro" : "Oscuro"}</span>
+      {theme === "dark" ? <Sun size={16} aria-hidden /> : <Moon size={16} aria-hidden />}
     </button>
   );
 }

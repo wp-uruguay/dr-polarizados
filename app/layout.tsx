@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
-import ThemeToggle from "./theme-toggle";
+import { Space_Grotesk } from "next/font/google";
+import HeaderTools from "./header-tools";
+import TopContactBar from "./top-contact-bar";
+import WhatsappFab from "./whatsapp-fab";
+import SiteNav from "./site-nav";
+import SiteFooter from "./site-footer";
 import "./globals.css";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
-  subsets: ["latin"],
-});
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -42,34 +41,26 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${plusJakarta.variable} ${spaceGrotesk.variable}`}>
-        <div className="site-shell">
-          <header className="site-header">
-            <div className="container nav-wrap">
-              <Link href="/" className="brand" aria-label="Ir a inicio">
-                <span className="brand-shield" aria-hidden />
-                <span className="brand-copy">
-                  <strong>DP</strong>
-                  <small>Dr Polarizados</small>
-                </span>
-              </Link>
-              <nav className="site-nav" aria-label="Principal">
-                <Link href="/">Home</Link>
-                <Link href="/productos">Productos</Link>
-                <Link href="/contacto">Contacto</Link>
-                <Link href="/blog">Blog</Link>
-              </nav>
-              <ThemeToggle />
+      <body
+        className={spaceGrotesk.variable}
+      >
+        <TopContactBar />
+        <div className="app-frame">
+          <div className="site-shell">
+            <header className="site-header">
+                <div className="container nav-wrap">
+                  <Link href="/" className="brand" aria-label="Ir a inicio">
+                    <span className="brand-logo" aria-hidden />
+                  </Link>
+                  <SiteNav />
+                  <HeaderTools />
+                </div>
+              </header>
+              <main>{children}</main>
+              <SiteFooter />
+              <WhatsappFab />
             </div>
-          </header>
-          <main>{children}</main>
-          <footer className="site-footer">
-            <div className="container footer-wrap">
-              <p>Dr Polarizados. Importacion y distribucion profesional.</p>
-              <p>Montevideo, Uruguay</p>
-            </div>
-          </footer>
-        </div>
+          </div>
       </body>
     </html>
   );

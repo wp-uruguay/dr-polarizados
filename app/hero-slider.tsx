@@ -34,7 +34,7 @@ const slides: Slide[] = [
       "Dale a tus clientes una experiencia unica mientras gestionas tu negocio de forma eficiente con nuestro software de gestion y garantias.",
     image: "/slider/slider2.png",
     primary: { href: "/contacto", label: "Solicitar mas info" },
-    secondary: { href: "/sofware", label: "Ver ejemplos de uso" },
+    secondary: { href: "/software", label: "Ver ejemplos de uso" },
   },
   {
     kicker: "Te ayudamos a crecer",
@@ -51,6 +51,8 @@ const slides: Slide[] = [
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const SLIDE_DURATION = 7000; // 7 segundos
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -66,13 +68,31 @@ export default function HeroSlider() {
 
     const timer = window.setInterval(() => {
       setIndex((prev) => (prev + 1) % slides.length);
-    }, 7000);
+      setProgress(0);
+    }, SLIDE_DURATION);
 
     return () => window.clearInterval(timer);
   }, [autoPlay]);
 
-  const next = () => setIndex((prev) => (prev + 1) % slides.length);
-  const prev = () => setIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  useEffect(() => {
+    const progressInterval = window.setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + (100 / (SLIDE_DURATION / 33)); // ~33ms updates
+        return next >= 100 ? 100 : next;
+      });
+    }, 33);
+
+    return () => window.clearInterval(progressInterval);
+  }, []);
+
+  const next = () => {
+    setIndex((prev) => (prev + 1) % slides.length);
+    setProgress(0);
+  };
+  const prev = () => {
+    setIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    setProgress(0);
+  };
 
   return (
     <section className="hero">
@@ -134,6 +154,14 @@ export default function HeroSlider() {
             ))}
           </div>
         </div>
+      </div>
+      
+      <div className="hero-progress-bar">
+        <div 
+          className="hero-progress-fill"
+          style={{ width: `${progress}%` }}
+          aria-hidden="true"
+        />
       </div>
     </section>
   );
