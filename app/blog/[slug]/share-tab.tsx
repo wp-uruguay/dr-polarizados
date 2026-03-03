@@ -28,7 +28,7 @@ export default function ShareTab({ slug, title }: ShareTabProps) {
       icon: Twitter,
       label: "X",
       url: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-      color: "#000000",
+      color: "#ffffff",
     },
     {
       id: "linkedin",
