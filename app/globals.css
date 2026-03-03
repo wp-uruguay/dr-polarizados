@@ -2490,3 +2490,26 @@ textarea {
   }
 }
 
+/* Sticky Scroll Section */
+.sticky-scroll-section {
+  position: sticky;
+  top: 0;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.sticky-scroll-section h2 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.sticky-scroll-section .horizontal-scroll-cards {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+

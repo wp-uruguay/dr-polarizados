@@ -1,6 +1,7 @@
 import Link from "next/link";
 import HeroSlider from "./hero-slider";
 import PremiumProductsSection from "./premium-products-section";
+import HorizontalScrollSection from "./horizontal-scroll-section";
 import type { PremiumCard } from "./premium-products-section";
 
 const topCards: PremiumCard[] = [
@@ -71,77 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
-        <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>Soluciones por segmento</h2>
-        <div className="horizontal-scroll-cards">
-          <article className="card card-scroll">
-            <h3>Card 1</h3>
-            <p className="lead">
-              Contenido de la tarjeta 1
-            </p>
-            <div className="cta-row">
-              <Link href="/" className="btn btn-ghost">
-                Explorar
-              </Link>
-            </div>
-          </article>
-          <article className="card card-scroll">
-            <h3>Card 2</h3>
-            <p className="lead">
-              Contenido de la tarjeta 2
-            </p>
-            <div className="cta-row">
-              <Link href="/" className="btn btn-ghost">
-                Explorar
-              </Link>
-            </div>
-          </article>
-          <article className="card card-scroll">
-            <h3>Card 3</h3>
-            <p className="lead">
-              Contenido de la tarjeta 3
-            </p>
-            <div className="cta-row">
-              <Link href="/" className="btn btn-ghost">
-                Explorar
-              </Link>
-            </div>
-          </article>
-          <article className="card card-scroll">
-            <h3>Card 4</h3>
-            <p className="lead">
-              Contenido de la tarjeta 4
-            </p>
-            <div className="cta-row">
-              <Link href="/" className="btn btn-ghost">
-                Explorar
-              </Link>
-            </div>
-          </article>
-          <article className="card card-scroll">
-            <h3>Card 5</h3>
-            <p className="lead">
-              Contenido de la tarjeta 5
-            </p>
-            <div className="cta-row">
-              <Link href="/" className="btn btn-ghost">
-                Explorar
-              </Link>
-            </div>
-          </article>
-          <article className="card card-scroll">
-            <h3>Card 6</h3>
-            <p className="lead">
-              Contenido de la tarjeta 6
-            </p>
-            <div className="cta-row">
-              <Link href="/" className="btn btn-ghost">
-                Explorar
-              </Link>
-            </div>
-          </article>
-        </div>
-      </section>
+      <HorizontalScrollSection />
 
       <PremiumProductsSection />
     </div>
