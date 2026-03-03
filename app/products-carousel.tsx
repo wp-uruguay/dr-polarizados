@@ -28,9 +28,17 @@ export default function ProductsCarousel() {
           "https://backend.drpolarizados.com/wp-json/wp/v2/products?_embed=wp:featuredmedia&per_page=12"
         );
         const data = await response.json();
-        setProducts(data);
+        
+        // Ensure data is an array, otherwise set empty array
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.warn("Products API did not return an array:", data);
+          setProducts([]);
+        }
       } catch (error) {
         console.error("Error fetching products:", error);
+        setProducts([]);
       } finally {
         setIsLoading(false);
       }
@@ -46,6 +54,19 @@ export default function ProductsCarousel() {
           <h2 className="section-title">Productos</h2>
           <div style={{ padding: "2rem", textAlign: "center", color: "var(--muted)" }}>
             Cargando productos...
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!products || products.length === 0) {
+    return (
+      <section className="section products-carousel-section">
+        <div className="container">
+          <h2 className="section-title">Productos</h2>
+          <div style={{ padding: "2rem", textAlign: "center", color: "var(--muted)" }}>
+            No hay productos disponibles en este momento.
           </div>
         </div>
       </section>
