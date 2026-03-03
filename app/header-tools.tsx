@@ -18,16 +18,19 @@ export default function HeaderTools() {
     {
       href: "/productos",
       title: "Ver Catálogo",
+      description: "Explorar todos nuestros productos",
       icon: ShoppingCart,
     },
     {
       href: "/mayoristas",
       title: "Para Mayoristas",
+      description: "Soluciones para distribuidores y revendedores",
       icon: Users,
     },
     {
       href: "/marca-blanca",
       title: "Marca Blanca",
+      description: "Personalizamos productos con tu marca",
       icon: Package,
     },
   ];
