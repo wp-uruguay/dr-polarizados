@@ -2,6 +2,8 @@ import Link from "next/link";
 import HeroSlider from "./hero-slider";
 import PremiumProductsSection from "./premium-products-section";
 import HorizontalScrollSection from "./horizontal-scroll-section";
+import FinalContactSection from "./final-contact-section";
+import ProductsCarousel from "./products-carousel";
 import type { PremiumCard } from "./premium-products-section";
 
 const topCards: PremiumCard[] = [
@@ -74,7 +76,9 @@ export default function Home() {
 
       <HorizontalScrollSection />
 
-      <PremiumProductsSection />
+      <FinalContactSection />
+
+      <ProductsCarousel />
     </div>
   );
 }
