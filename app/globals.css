@@ -104,7 +104,7 @@ body.drawer-open .app-frame {
   backdrop-filter: blur(8px);
   background: color-mix(in srgb, var(--surface) 86%, transparent);
   border-bottom: 1px solid var(--line);
-  z-index: 10;
+  z-index: 100;
 }
 
 .nav-wrap {
@@ -2268,6 +2268,143 @@ textarea {
 
   .footer-bottom-links {
     justify-content: center;
+  }
+}
+
+/* Blog Content Styles */
+.blog-content p {
+  margin-bottom: 1.5rem;
+}
+
+.blog-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Share Tab Styles */
+.share-tab-container {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.share-tab-button {
+  width: 50px;
+  height: 50px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.share-tab-button:hover {
+  background: var(--accent-strong, var(--accent));
+  transform: scale(1.05);
+}
+
+.share-menu {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideInRight 0.3s ease;
+  border: 1px solid var(--line);
+  z-index: 50;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.share-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.share-link:last-child {
+  border-bottom: none;
+}
+
+.share-link:hover {
+  background: color-mix(in srgb, var(--share-color) 10%, transparent);
+  color: var(--share-color);
+}
+
+.share-link svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .share-tab-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    top: auto;
+    transform: none;
+  }
+
+  .share-tab-button {
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+  }
+
+  .share-menu {
+    right: auto;
+    left: auto;
+    top: auto;
+    transform: translateY(0);
+    bottom: 70px;
+    right: 0;
   }
 }
 

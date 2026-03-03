@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import ShareTab from "./share-tab";
 
 interface FeaturedImage {
   id: number;
@@ -167,7 +168,8 @@ export default async function BlogPostPage({
           color: "white",
           textAlign: "center",
           padding: "2rem",
-          marginTop: "var(--top-bar-h)",
+          marginTop: "calc(var(--top-bar-h) * -1)",
+          paddingTop: "calc(2rem + var(--top-bar-h) + var(--header-h))",
         }}
       >
         <div style={{ maxWidth: "800px" }}>
@@ -223,6 +225,7 @@ export default async function BlogPostPage({
 
       {/* Content Section */}
       <section className="section">
+        <ShareTab slug={slug} title={post.title.rendered} />
         <div className="container" style={{ maxWidth: "800px" }}>
           <article>
             <div
