@@ -42,6 +42,33 @@ async function getBlogPost(slug: string) {
   }
 }
 
+async function getBlogPosts() {
+  try {
+    const response = await fetch(
+      "https://backend.drpolarizados.com/wp-json/wp/v2/posts?per_page=100",
+      { next: { revalidate: 3600 } }
+    );
+
+    if (!response.ok) {
+      throw new Error("Error fetching posts");
+    }
+
+    const posts: BlogPost[] = await response.json();
+    return posts;
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    return [];
+  }
+}
+
+export async function generateStaticParams() {
+  const posts = await getBlogPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 function formatDate(dateString: string) {
   const date = new Date(dateString);
   return date.toLocaleDateString("es-ES", {
@@ -54,9 +81,10 @@ function formatDate(dateString: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
 
   if (!post) {
     return {
@@ -74,9 +102,10 @@ export async function generateMetadata({
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
 
   if (!post) {
     return (
