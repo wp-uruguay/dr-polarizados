@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+
+interface FeaturedImage {
+  id: number;
+  source_url: string;
+}
 
 interface BlogPost {
   id: number;
@@ -16,12 +21,16 @@ interface BlogPost {
   date: string;
   slug: string;
   author: number;
+  featured_media: number;
+  _embedded?: {
+    "wp:featuredmedia"?: FeaturedImage[];
+  };
 }
 
 async function getBlogPost(slug: string) {
   try {
     const response = await fetch(
-      `https://backend.drpolarizados.com/wp-json/wp/v2/posts?slug=${slug}`,
+      `https://backend.drpolarizados.com/wp-json/wp/v2/posts?slug=${slug}&_embed=wp:featuredmedia`,
       { next: { revalidate: 3600 } }
     );
 
@@ -78,6 +87,20 @@ function formatDate(dateString: string) {
   });
 }
 
+function calculateReadingTime(htmlContent: string): number {
+  const plainText = htmlContent.replace(/<[^>]*>/g, "");
+  const wordCount = plainText.split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / 200);
+  return Math.max(1, readingTime);
+}
+
+function getFeaturedImage(post: BlogPost): string | null {
+  if (post._embedded?.["wp:featuredmedia"]?.[0]?.source_url) {
+    return post._embedded["wp:featuredmedia"][0].source_url;
+  }
+  return null;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -123,65 +146,118 @@ export default async function BlogPostPage({
     );
   }
 
+  const featuredImage = getFeaturedImage(post);
+  const readingTime = calculateReadingTime(post.content.rendered);
+
   return (
-    <section className="section">
-      <div className="container" style={{ maxWidth: "800px" }}>
-        <Link
-          href="/blog"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            color: "var(--accent-strong)",
-            marginBottom: "2rem",
-            textDecoration: "none",
-          }}
-        >
-          <ChevronLeft size={18} />
-          Volver al blog
-        </Link>
-
-        <article>
-          <header style={{ marginBottom: "2rem" }}>
-            <p style={{ color: "var(--muted)", fontSize: ".9rem", marginBottom: "0.5rem" }}>
-              {formatDate(post.date)}
-            </p>
-            <h1 style={{ marginTop: 0 }}>{post.title.rendered}</h1>
-          </header>
-
-          <div
-            className="blog-content"
-            dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+    <>
+      {/* Hero Section */}
+      <div
+        className="blog-post-hero"
+        style={{
+          width: "100%",
+          height: "500px",
+          backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(${featuredImage || "var(--surface)"})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "white",
+          textAlign: "center",
+          padding: "2rem",
+          marginTop: "var(--top-bar-h)",
+        }}
+      >
+        <div style={{ maxWidth: "800px" }}>
+          <h1
             style={{
-              fontSize: "1rem",
-              lineHeight: "1.8",
-              color: "var(--ink)",
-            }}
-          />
-        </article>
-
-        <div
-          style={{
-            marginTop: "3rem",
-            paddingTop: "2rem",
-            borderTop: "1px solid var(--line)",
-          }}
-        >
-          <Link
-            href="/blog"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              color: "var(--accent-strong)",
-              textDecoration: "none",
+              fontSize: "clamp(2rem, 8vw, 4rem)",
+              fontWeight: "800",
+              margin: 0,
+              lineHeight: "1.2",
+              textShadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
             }}
           >
-            <ChevronLeft size={18} />
-            Volver al blog
-          </Link>
+            {post.title.rendered}
+          </h1>
         </div>
       </div>
-    </section>
+
+      {/* Info Bar */}
+      <div
+        style={{
+          background: "var(--accent)",
+          color: "#111111",
+          padding: "1rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1.5rem",
+          fontSize: "0.9rem",
+          fontWeight: "600",
+          flexWrap: "wrap",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+          <span>{formatDate(post.date)}</span>
+        </div>
+        <div style={{ opacity: 0.6 }}>•</div>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+          <span>{readingTime} min de lectura</span>
+        </div>
+        <div style={{ opacity: 0.6 }}>•</div>
+        <nav style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.85rem" }}>
+          <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>
+            Inicio
+          </Link>
+          <ChevronRight size={14} />
+          <Link href="/blog" style={{ color: "inherit", textDecoration: "none" }}>
+            Blog
+          </Link>
+          <ChevronRight size={14} />
+          <span style={{ opacity: 0.7 }}>{post.title.rendered.substring(0, 30)}...</span>
+        </nav>
+      </div>
+
+      {/* Content Section */}
+      <section className="section">
+        <div className="container" style={{ maxWidth: "800px" }}>
+          <article>
+            <div
+              className="blog-content"
+              dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+              style={{
+                fontSize: "1rem",
+                lineHeight: "1.8",
+                color: "var(--ink)",
+              }}
+            />
+          </article>
+
+          <div
+            style={{
+              marginTop: "3rem",
+              paddingTop: "2rem",
+              borderTop: "1px solid var(--line)",
+            }}
+          >
+            <Link
+              href="/blog"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                color: "var(--accent-strong)",
+                textDecoration: "none",
+              }}
+            >
+              ← Volver al blog
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
