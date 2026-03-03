@@ -2492,7 +2492,7 @@ textarea {
 
 /* Final Contact Section */
 .final-contact-section {
-  background: var(--surface-2);
+  background: transparent;
 }
 
 .final-contact-container {

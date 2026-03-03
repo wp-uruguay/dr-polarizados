@@ -3,8 +3,6 @@ import Link from "next/link";
 export default function FinalContactSection() {
   return (
     <section className="section final-contact-section">
-      <h2 className="section-title" style={{ marginBottom: "3rem" }}>Productos premium</h2>
-      
       <div className="container final-contact-container">
         {/* Columna izquierda: Cards apiladas */}
         <div className="final-contact-cards">

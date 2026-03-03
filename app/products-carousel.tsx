@@ -6,8 +6,11 @@ import { useEffect, useRef, useState } from "react";
 
 interface Product {
   id: number;
-  name: string;
+  title: string | { rendered: string };
   featured_media: number;
+  better_featured_image?: {
+    source_url?: string;
+  };
   _embedded?: {
     "wp:featuredmedia"?: Array<{
       source_url: string;
@@ -25,7 +28,7 @@ export default function ProductsCarousel() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://backend.drpolarizados.com/wp-json/wp/v2/products?_embed=wp:featuredmedia&per_page=12"
+          "https://backend.drpolarizados.com/wp-json/wp/v2/product?_embed&per_page=12"
         );
         const data = await response.json();
         
@@ -50,7 +53,7 @@ export default function ProductsCarousel() {
   if (isLoading) {
     return (
       <section className="section products-carousel-section">
-        <div className="container">
+        <div className="container" style={{ textAlign: "center" }}>
           <h2 className="section-title">Productos</h2>
           <div style={{ padding: "2rem", textAlign: "center", color: "var(--muted)" }}>
             Cargando productos...
@@ -63,7 +66,7 @@ export default function ProductsCarousel() {
   if (!products || products.length === 0) {
     return (
       <section className="section products-carousel-section">
-        <div className="container">
+        <div className="container" style={{ textAlign: "center" }}>
           <h2 className="section-title">Productos</h2>
           <div style={{ padding: "2rem", textAlign: "center", color: "var(--muted)" }}>
             No hay productos disponibles en este momento.
@@ -75,7 +78,7 @@ export default function ProductsCarousel() {
 
   return (
     <section className="section products-carousel-section">
-      <div className="container" style={{ marginBottom: "3rem" }}>
+      <div className="container" style={{ marginBottom: "3rem", textAlign: "center" }}>
         <h2 className="section-title">Productos</h2>
       </div>
 
@@ -86,7 +89,10 @@ export default function ProductsCarousel() {
         aria-label="Carrusel de productos"
       >
         {products.map((product) => {
-          const featuredImage = product._embedded?.["wp:featuredmedia"]?.[0];
+          const embeddedImage = product._embedded?.["wp:featuredmedia"]?.[0];
+          const featuredImage = embeddedImage || product.better_featured_image;
+          const productTitle = typeof product.title === 'string' ? product.title : product.title?.rendered || '';
+          const imageAlt = embeddedImage?.alt_text || productTitle;
 
           return (
             <article key={product.id} className="product-carousel-item">
@@ -94,18 +100,18 @@ export default function ProductsCarousel() {
                 {featuredImage?.source_url ? (
                   <Image
                     src={featuredImage.source_url}
-                    alt={featuredImage.alt_text || product.name}
+                    alt={imageAlt}
                     fill
                     className="product-image"
                     sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                   />
                 ) : (
                   <div className="product-image-placeholder">
-                    <span>{product.name}</span>
+                    <span>{productTitle}</span>
                   </div>
                 )}
               </div>
-              <h3 style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>{product.name}</h3>
+              <h3 style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>{productTitle}</h3>
               <Link href={`/productos/${product.id}`} className="btn btn-ghost btn-sm">
                 Ver producto
               </Link>
