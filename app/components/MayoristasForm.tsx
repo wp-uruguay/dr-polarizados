@@ -109,7 +109,7 @@ export function MayoristasForm() {
             name="whatsapp"
             value={formData.whatsapp}
             onChange={handleInputChange}
-            placeholder="+598 9 XXXX XXXX"
+            placeholder="+54 9 XXXX XXXX"
             required
           />
         </label>

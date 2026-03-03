@@ -2440,6 +2440,8 @@ textarea {
 /* Horizontal Scroll Cards */
 .horizontal-scroll-cards {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
   gap: 1.5rem;
@@ -2447,6 +2449,8 @@ textarea {
   scroll-behavior: smooth;
   width: 100%;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) var(--surface-2);
 }
 
 /* Hide scrollbar for Chrome, Safari, Edge */
@@ -2469,9 +2473,10 @@ textarea {
 }
 
 .card-scroll {
-  flex: 0 0 50%;
-  min-width: 50%;
+  flex: 0 0 calc(50% - 0.75rem);
+  min-width: calc(50% - 0.75rem);
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 @media (max-width: 768px) {
@@ -2480,8 +2485,8 @@ textarea {
   }
 
   .card-scroll {
-    flex: 0 0 calc(100% - 1rem);
-    min-width: calc(100% - 1rem);
+    flex: 0 0 calc(100vw - 2rem - 1rem);
+    min-width: calc(100vw - 2rem - 1rem);
   }
 }
 

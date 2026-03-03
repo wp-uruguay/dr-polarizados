@@ -82,7 +82,7 @@ export default function SiteFooter() {
             <div className="footer-contact">
               <div className="footer-contact-item">
                 <Phone size={16} />
-                <span>+598 9 1168 477 185</span>
+                <span>+54 9 1168 477 185</span>
               </div>
               <div className="footer-contact-item">
                 <Mail size={16} />
@@ -90,7 +90,7 @@ export default function SiteFooter() {
               </div>
               <div className="footer-contact-item">
                 <MapPin size={16} />
-                <span>Montevideo, Uruguay</span>
+                <span>CABA, Buenos Aires, Argentina</span>
               </div>
             </div>
           </div>

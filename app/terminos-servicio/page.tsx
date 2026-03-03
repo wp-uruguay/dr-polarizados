@@ -145,7 +145,7 @@ export default function TerminosServicioPage() {
             </p>
             <ul>
               <li>Email: <a href="mailto:comunicaciones@drpolarizados.com">comunicaciones@drpolarizados.com</a></li>
-              <li>WhatsApp: +598 9 1168 477 185</li>
+              <li>WhatsApp: +54 9 1168 477 185</li>
             </ul>
 
             <h2 style={{ marginTop: "2rem" }}>14. Divisibilidad</h2>
@@ -177,7 +177,7 @@ export default function TerminosServicioPage() {
             </p>
             <ul>
               <li><strong>Email:</strong> <a href="mailto:comunicaciones@drpolarizados.com">comunicaciones@drpolarizados.com</a></li>
-              <li><strong>Teléfono:</strong> +598 9 1168 477 185</li>
+              <li><strong>Teléfono:</strong> +54 9 1168 477 185</li>
               <li><strong>Ubicación:</strong> Buenos Aires, República Argentina</li>
             </ul>
 
