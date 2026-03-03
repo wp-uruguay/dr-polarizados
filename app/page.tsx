@@ -72,31 +72,75 @@ export default function Home() {
       </section>
 
       <section className="section">
-        <div className="container grid grid-2">
-          <article className="card">
-            <h2>Soluciones por segmento</h2>
-            <p className="lead">
-              Portfolio simplificado para cotizar rapido: automotriz, edificios
-              corporativos y proyectos de flota.
-            </p>
-            <div className="cta-row">
-              <Link href="/productos" className="btn btn-ghost">
-                Explorar productos
-              </Link>
-            </div>
-          </article>
-          <article className="card">
-            <h2>Capacitacion y soporte</h2>
-            <p className="lead">
-              Acompanamos a instaladores con fichas tecnicas, recomendaciones
-              de aplicacion y criterios de venta.
-            </p>
-            <div className="cta-row">
-              <Link href="/blog" className="btn btn-ghost">
-                Leer guias del blog
-              </Link>
-            </div>
-          </article>
+        <div className="container">
+          <div className="horizontal-scroll-cards">
+            <article className="card card-scroll">
+              <h3>Card 1</h3>
+              <p className="lead">
+                Contenido de la tarjeta 1
+              </p>
+              <div className="cta-row">
+                <Link href="/" className="btn btn-ghost">
+                  Explorar
+                </Link>
+              </div>
+            </article>
+            <article className="card card-scroll">
+              <h3>Card 2</h3>
+              <p className="lead">
+                Contenido de la tarjeta 2
+              </p>
+              <div className="cta-row">
+                <Link href="/" className="btn btn-ghost">
+                  Explorar
+                </Link>
+              </div>
+            </article>
+            <article className="card card-scroll">
+              <h3>Card 3</h3>
+              <p className="lead">
+                Contenido de la tarjeta 3
+              </p>
+              <div className="cta-row">
+                <Link href="/" className="btn btn-ghost">
+                  Explorar
+                </Link>
+              </div>
+            </article>
+            <article className="card card-scroll">
+              <h3>Card 4</h3>
+              <p className="lead">
+                Contenido de la tarjeta 4
+              </p>
+              <div className="cta-row">
+                <Link href="/" className="btn btn-ghost">
+                  Explorar
+                </Link>
+              </div>
+            </article>
+            <article className="card card-scroll">
+              <h3>Card 5</h3>
+              <p className="lead">
+                Contenido de la tarjeta 5
+              </p>
+              <div className="cta-row">
+                <Link href="/" className="btn btn-ghost">
+                  Explorar
+                </Link>
+              </div>
+            </article>
+            <article className="card card-scroll">
+              <h3>Card 6</h3>
+              <p className="lead">
+                Contenido de la tarjeta 6
+              </p>
+              <div className="cta-row">
+                <Link href="/" className="btn btn-ghost">
+                  Explorar
+                </Link>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 

@@ -2437,3 +2437,51 @@ textarea {
   }
 }
 
+/* Horizontal Scroll Cards */
+.horizontal-scroll-cards {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for Chrome, Safari, Edge */
+.horizontal-scroll-cards::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll-cards::-webkit-scrollbar-track {
+  background: var(--surface-2);
+  border-radius: 10px;
+}
+
+.horizontal-scroll-cards::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 10px;
+}
+
+.horizontal-scroll-cards::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+.card-scroll {
+  flex: 0 0 50%;
+  min-width: 50%;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 768px) {
+  .horizontal-scroll-cards {
+    gap: 1rem;
+  }
+
+  .card-scroll {
+    flex: 0 0 calc(100% - 1rem);
+    min-width: calc(100% - 1rem);
+  }
+}
+
