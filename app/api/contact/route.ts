@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const TO_EMAIL = "comunicaciones@drpolarizados.com";
+const TO_EMAIL = "comunicaciones@drpolarizados.com"; // destino
 
 interface ContactPayload {
   origin: string;
