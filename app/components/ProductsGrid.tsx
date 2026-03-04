@@ -192,18 +192,35 @@ export function ProductsGrid({ productCat, columns = 3, categoryId }: ProductsGr
                 }}
               >
                 <button
-                  className="contact-button"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "0.5rem",
                     fontSize: "0.9rem",
                     padding: "0.5rem 1rem",
-                    background: "none",
+                    background: "var(--accent)",
                     border: "none",
-                    color: "var(--accent)",
+                    color: "#000000",
                     cursor: "pointer",
                     fontWeight: 600,
+                    borderRadius: "0.375rem",
+                    transition: "all 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#ff7d1f";
+                    e.currentTarget.style.transform = "translateY(-1px)";
+                    const svg = e.currentTarget.querySelector("svg");
+                    if (svg) {
+                      svg.style.animation = "slideRight 0.6s ease";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "var(--accent)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                    const svg = e.currentTarget.querySelector("svg");
+                    if (svg) {
+                      svg.style.animation = "none";
+                    }
                   }}
                 >
                   Ver

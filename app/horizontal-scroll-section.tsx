@@ -2,14 +2,40 @@
 
 import Link from "next/link";
 import { ShoppingCart, Zap, Package, Code } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export default function HorizontalScrollSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const onWheel = (e: WheelEvent) => {
+      /* Only hijack if there's room to scroll horizontally */
+      const { scrollLeft, scrollWidth, clientWidth } = el;
+      const atStart = scrollLeft <= 0;
+      const atEnd = scrollLeft + clientWidth >= scrollWidth - 1;
+
+      /* If scrolling down and not at the end, or scrolling up and not at start → hijack */
+      if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY * 3;
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
   return (
     <section className="section">
-      <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>
-        Nuestras Soluciones
-      </h2>
-      <div className="horizontal-scroll-cards">
+      <div className="container">
+        <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>
+          Nuestras Soluciones
+        </h2>
+        <div className="horizontal-scroll-wrapper">
+        <div className="horizontal-scroll-cards" ref={scrollRef}>
         {/* Card 1: Productos Premium */}
         <article className="card card-scroll">
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
@@ -17,7 +43,7 @@ export default function HorizontalScrollSection() {
             <h3 style={{ margin: 0 }}>Productos Premium</h3>
           </div>
           <p className="lead">
-            Laminas de polarizado de alta calidad con protección UV avanzada, rechazo térmico superior y oscurecimiento óptico de excelencia.
+            Láminas de polarizado de alta calidad con protección UV avanzada, rechazo térmico superior y oscurecimiento óptico de excelencia.
           </p>
           <ul style={{ fontSize: "0.9rem", lineHeight: "1.6", marginBottom: "1rem" }}>
             <li>✓ Control solar efectivo</li>
@@ -118,6 +144,8 @@ export default function HorizontalScrollSection() {
             }}
           />
         </article>
+      </div>
+      </div>
       </div>
     </section>
   );

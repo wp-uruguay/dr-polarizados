@@ -10,22 +10,22 @@ const topCards: PremiumCard[] = [
   {
     title: "Seguridad",
     description:
-      "Laminas de seguridad de alta resistencia para proteger el vehiculo de tu cliente con un producto premium.",
+      "Láminas de seguridad de alta resistencia para proteger el vehículo de tu cliente con un producto premium.",
     icon: "shield",
     href: "/productos#seguridad",
   },
   {
     title: "Polarizados",
     description:
-      "Control solar, rechazo UV y reduccion termica con opciones por nivel de visibilidad y uso.",
+      "Control solar, rechazo UV y reducción térmica con opciones por nivel de visibilidad y uso.",
     icon: "car",
     href: "/productos#polarizados",
   },
   {
     title: "PPF",
     description:
-      "Proteccion transparente de pintura con tecnologia avanzada contra rayos UV y daños externos.",
-    icon: "car",
+      "Protección transparente de pintura con tecnología avanzada contra rayos UV y daños externos.",
+    icon: "zap",
     href: "/productos#ppf",
   },
   {

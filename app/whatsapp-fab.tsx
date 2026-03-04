@@ -30,7 +30,7 @@ export default function WhatsappFab() {
   const whatsappMessage =
     preparedMessage.length > 0
       ? preparedMessage
-      : "Hola, me gustaria recibir asesoramiento.";
+      : "Hola, me gustaría recibir asesoramiento.";
 
   const whatsappHref = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -65,7 +65,7 @@ export default function WhatsappFab() {
         <div className="wa-chat-modal" role="dialog" aria-label="Chat de WhatsApp">
           <div className="wa-chat-head">Atención al cliente</div>
           <p className="wa-chat-bubble">
-            {greeting}, como podemos ayudarte?
+            {greeting}, ¿cómo podemos ayudarte?
           </p>
           <label htmlFor="wa-message" className="wa-input-label">
             Mensaje

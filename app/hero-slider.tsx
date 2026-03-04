@@ -17,31 +17,31 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    kicker: "Linea Profesional y Nano Carbon en stock inmediato.",
+    kicker: "Protección premium para tus clientes",
     icon: Shield,
-    title: "Mas margen por metro. Mas control de tu negocio.",
+    title: "Más margen por metro. Más control de tu negocio.",
     description:
-      "Se distribuidor de nuestra marca o crea tu propia marca de laminas con nuestra solucion b2b de marca blanca.",
+      "Sé distribuidor de nuestra marca o crea tu propia marca de láminas con nuestra solución b2b de marca blanca.",
     image: "/slider/slider1.png",
     primary: { href: "/marca-blanca", label: "Quiero mi propia marca" },
     secondary: { href: "/mayoristas", label: "Condiciones mayoristas" },
   },
   {
-    kicker: "Software de gestion a medida para nuestros clientes",
+    kicker: "Software de gestión a medida para nuestros clientes",
     icon: Monitor,
-    title: "Tecnologia para optimizar tu negocio",
+    title: "Tecnología para optimizar tu negocio",
     description:
-      "Dale a tus clientes una experiencia unica mientras gestionas tu negocio de forma eficiente con nuestro software de gestion y garantias.",
+      "Dale a tus clientes una experiencia única mientras gestionas tu negocio de forma eficiente con nuestro software de gestión y garantías.",
     image: "/slider/slider2.png",
-    primary: { href: "/contacto", label: "Solicitar mas info" },
+    primary: { href: "/contacto", label: "Solicitar más info" },
     secondary: { href: "/software", label: "Ver ejemplos de uso" },
   },
   {
     kicker: "Te ayudamos a crecer",
     icon: Monitor,
-    title: "Tecnologia premium en polarizados, seguridad y arquitectura.",
+    title: "Tecnología premium en polarizados, seguridad y arquitectura.",
     description:
-      "Ofrecele a tus clientes un producto de alta calidad, con una experiencia perfecta y un precio razonable.",
+      "Ofrécele a tus clientes un producto de alta calidad, con una experiencia perfecta y un precio razonable.",
     image: "/slider/slider3.webp",
     primary: { href: "/contacto", label: "Contactar" },
     secondary: { href: "/productos", label: "Ver productos" },
@@ -66,15 +66,6 @@ export default function HeroSlider() {
       return;
     }
 
-    const timer = window.setInterval(() => {
-      setIndex((prev) => (prev + 1) % slides.length);
-      setProgress(0);
-    }, SLIDE_DURATION);
-
-    return () => window.clearInterval(timer);
-  }, [autoPlay]);
-
-  useEffect(() => {
     const progressInterval = window.setInterval(() => {
       setProgress((prev) => {
         const next = prev + (100 / (SLIDE_DURATION / 33)); // ~33ms updates
@@ -83,7 +74,14 @@ export default function HeroSlider() {
     }, 33);
 
     return () => window.clearInterval(progressInterval);
-  }, []);
+  }, [autoPlay]);
+
+  useEffect(() => {
+    if (progress === 100 && autoPlay) {
+      setIndex((prev) => (prev + 1) % slides.length);
+      setProgress(0);
+    }
+  }, [progress, autoPlay]);
 
   const next = () => {
     setIndex((prev) => (prev + 1) % slides.length);

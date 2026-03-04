@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-interface MayoristasFormProps {}
+import { CircleCheck, CircleX } from "lucide-react";
 
 export function MayoristasForm() {
   const [formData, setFormData] = useState({
@@ -14,6 +13,7 @@ export function MayoristasForm() {
     tipo_negocio: "",
     mensaje: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -24,10 +24,72 @@ export function MayoristasForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Datos del formulario:", formData);
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          origin: "mayoristas",
+          fields: {
+            Nombre: formData.nombre,
+            Empresa: formData.empresa,
+            Ciudad: formData.ciudad,
+            "Tipo de negocio": formData.tipo_negocio,
+            Email: formData.email,
+            WhatsApp: formData.whatsapp,
+            Mensaje: formData.mensaje,
+          },
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setFormData({ nombre: "", empresa: "", email: "", whatsapp: "", ciudad: "", tipo_negocio: "", mensaje: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
+
+  if (status === "sent") {
+    return (
+      <article className="card">
+        <div className="form-confirmation">
+          <div className="form-confirmation-icon">
+            <CircleCheck size={28} />
+          </div>
+          <h3>¡Solicitud enviada!</h3>
+          <p>Recibimos tu consulta mayorista. Un asesor comercial se comunicará con vos a la brevedad.</p>
+          <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+            Enviar otra consulta
+          </button>
+        </div>
+      </article>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <article className="card">
+        <div className="form-confirmation form-confirmation-error">
+          <div className="form-confirmation-icon">
+            <CircleX size={28} />
+          </div>
+          <h3>Error al enviar</h3>
+          <p>Ocurrió un problema. Por favor, intentá de nuevo.</p>
+          <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+            Volver al formulario
+          </button>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article className="card">
@@ -126,8 +188,8 @@ export function MayoristasForm() {
           />
         </label>
 
-        <button type="submit" className="contact-button">
-          Enviar
+        <button type="submit" className="contact-button" disabled={status === "sending"}>
+          {status === "sending" ? "Enviando..." : "Enviar"}
         </button>
       </form>
     </article>

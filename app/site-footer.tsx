@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import XIcon from "./components/XIcon";
 
 export default function SiteFooter() {
   return (
@@ -21,7 +22,7 @@ export default function SiteFooter() {
               />
             </Link>
             <p className="footer-tagline">
-              Importación y distribución profesional de láminas de polarizar para automotriz, arquitectura y flotas.
+              Stock permanente y distribución profesional de láminas de polarizar para automotriz, arquitectura y flotas.
             </p>
           </div>
 
@@ -39,7 +40,7 @@ export default function SiteFooter() {
 
           {/* Contact Info & Social Networks */}
           <div className="footer-section">
-            <h3>Seguinos</h3>
+            <h3>Síguenos</h3>
             <div className="footer-socials">
               <a
                 href="https://facebook.com/drpolarizados"
@@ -69,13 +70,13 @@ export default function SiteFooter() {
                 <Linkedin size={20} />
               </a>
               <a
-                href="https://wa.me/5491168477185"
+                href="https://www.x.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                title="WhatsApp"
+                title="X (Twitter)"
                 className="footer-social-link"
               >
-                <Mail size={20} />
+                <XIcon size={20} />
               </a>
             </div>
             <h3 style={{ marginTop: "1.5rem" }}>Contacto</h3>

@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Building2, Car, Shield, ChevronRight } from "lucide-react";
+import { Building2, Car, Shield, ChevronRight, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-export type PremiumCardIcon = "shield" | "car" | "building2";
+export type PremiumCardIcon = "shield" | "car" | "building2" | "zap";
 
 export type PremiumCard = {
   title: string;
@@ -18,25 +18,26 @@ const iconMap = {
   building2: Building2,
   car: Car,
   shield: Shield,
+  zap: Zap,
 } as const;
 
 const defaultPremiumCards: PremiumCard[] = [
   {
-    title: "Importacion directa",
+    title: "Stock permanente",
     description:
-      "Laminas con trazabilidad de lote, consistencia optica y disponibilidad para entregas programadas.",
+      "Láminas con trazabilidad de lote, consistencia óptica y disponibilidad para entregas programadas.",
     highlight: false,
   },
   {
     title: "Enfoque B2B",
     description:
-      "Planes para talleres, redes de instalacion, concesionarios y obras con requerimientos tecnicos especificos.",
+      "Planes para talleres, redes de instalación, concesionarios y obras con requerimientos técnicos específicos.",
     highlight: true,
   },
   {
     title: "Performance real",
     description:
-      "Control solar, rechazo UV y reduccion termica con opciones por nivel de visibilidad y uso.",
+      "Control solar, rechazo UV y reducción térmica con opciones por nivel de visibilidad y uso.",
     highlight: false,
   },
 ];

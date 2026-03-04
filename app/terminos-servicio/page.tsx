@@ -67,7 +67,7 @@ export default function TerminosServicioPage() {
               Aunque nos esforzamos por mantener información precisa y actualizada, no garantizamos la exactitud, integridad o disponibilidad de todo el contenido. El Sitio se proporciona "tal como está" sin garantías expresas o implícitas.
             </p>
             <p>
-              Las especificaciones técnicas y precios pueden cambiar sin previo aviso. Te recomendamos confirmar detalle antes de realizar cualquier transacción comercial.
+              Las especificaciones técnicas y precios pueden cambiar sin previo aviso. Te recomendamos confirmar detalles antes de realizar cualquier transacción comercial.
             </p>
 
             <h2 style={{ marginTop: "2rem" }}>7. Formularios de Contacto</h2>

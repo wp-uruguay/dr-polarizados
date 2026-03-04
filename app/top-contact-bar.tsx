@@ -2,7 +2,7 @@
 
 import {
   Facebook,
-  Headphones,
+  Headset,
   Instagram,
   Linkedin,
   Mail,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import XIcon from "./components/XIcon";
 
 const WHATSAPP_PHONE = "5491168477185";
 
@@ -47,7 +48,7 @@ export default function TopContactBar() {
     const content =
       message.length > 0
         ? message
-        : "Hola, me gustaria recibir mas informacion sobre Dr Polarizados.";
+        : "Hola, me gustaría recibir más información sobre Dr Polarizados.";
 
     return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(content)}`;
   }, [drawerMessage]);
@@ -72,7 +73,7 @@ export default function TopContactBar() {
 
           <div className="top-contact-right">
             <a className="top-inline-link" href="tel:+5491168477185">
-              <Headphones size={14} aria-hidden />
+              <Headset size={14} aria-hidden />
               <span>+54 9 11 6847-7185</span>
             </a>
             <span className="top-separator" aria-hidden>
@@ -116,7 +117,7 @@ export default function TopContactBar() {
                 rel="noreferrer"
                 aria-label="X (Twitter)"
               >
-                <X size={14} aria-hidden />
+                <XIcon size={14} />
               </a>
             </div>
           </div>
@@ -163,6 +164,9 @@ export default function TopContactBar() {
           </a>
           <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <Linkedin size={16} aria-hidden />
+          </a>
+          <a href="https://www.x.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
+            <XIcon size={16} />
           </a>
         </div>
 

@@ -15,11 +15,11 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Dr Polarizados | Laminas de Polarizar",
+    default: "Dr Polarizados | Láminas de Polarizar",
     template: "%s | Dr Polarizados",
   },
   description:
-    "Importacion y distribucion de laminas de polarizar para automotriz, arquitectura y flotas.",
+    "Stock permanente y distribución de láminas de polarizar para automotriz, arquitectura y flotas.",
 };
 
 export default function RootLayout({

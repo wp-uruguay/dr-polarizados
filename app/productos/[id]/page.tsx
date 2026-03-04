@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, MessageCircle, Mail, ArrowLeft } from "lucide-react";
+import { ProductDescription } from "./ProductDescription";
+import { ProductFooterShare } from "./ProductFooter";
 
 interface Product {
   id: number;
@@ -9,6 +11,7 @@ interface Product {
   content: string;
   excerpt: string;
   featured_media?: number;
+  product_cat?: number[];
   acf?: {
     precio?: string | number;
     sku?: string;
@@ -116,134 +119,117 @@ export default async function ProductPage({
 
   const precio = product.acf?.precio || "Consultar precio";
 
+  const whatsappMessage = encodeURIComponent(`Hola, quiero consultar por el precio de ${title}`);
+  const whatsappUrl = `https://wa.me/5491168477185?text=${whatsappMessage}`;
+  const mailSubject = encodeURIComponent(`Consulta por ${title}`);
+  const mailBody = encodeURIComponent(`Hola, quiero consultar por el precio de ${title}`);
+  const mailUrl = `mailto:comunicaciones@drpolarizados.com?subject=${mailSubject}&body=${mailBody}`;
+
   return (
     <>
-      <section className="section" style={{ paddingTop: "2rem" }}>
+      {/* Hero Section */}
+      <section className="product-hero" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('${imageSrc}')` }}>
         <div className="container">
           <Link
             href="/productos"
-            className="inline-flex items-center gap-2 text-accent mb-6 hover:opacity-80 transition-opacity"
+            className="product-back-link"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={20} aria-hidden />
             Volver al catálogo
           </Link>
 
-          <div
-            className="grid"
-            style={{
-              gridTemplateColumns: "1fr 1fr",
-              gap: "3rem",
-              marginBottom: "3rem",
-            }}
-          >
-            {/* Image Section */}
-            <div>
-              <div
-                className="relative w-full rounded-lg overflow-hidden"
-                style={{ aspectRatio: "1" }}
-              >
-                <Image
-                  src={imageSrc}
-                  alt={title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+          <div className="product-hero-grid">
+            {/* Image */}
+            <div className="product-hero-image">
+              <Image
+                src={imageSrc}
+                alt={title}
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
 
-            {/* Details Section */}
-            <div>
-              <h1 className="text-4xl font-bold mb-4">{title}</h1>
-
-              {product.acf?.sku && (
-                <p
-                  className="text-sm mb-4"
-                  style={{ color: "var(--muted)" }}
+            {/* Info */}
+            <div className="product-hero-info">
+              <h1>{title}</h1>
+              <h3 className="product-hero-price">Consultar precio para talleres o distribuidores</h3>
+              <div className="product-hero-actions">
+                <a
+                  href={whatsappUrl}
+                  className="contact-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#000" }}
                 >
-                  SKU: <strong>{product.acf.sku}</strong>
-                </p>
-              )}
-
-              <div
-                className="text-3xl font-bold mb-8"
-                style={{ color: "var(--accent)" }}
-              >
-                {precio}
-              </div>
-
-              <div className="mb-8">
-                <h2 className="text-lg font-bold mb-4">Descripción</h2>
-                <div
-                  className="prose prose-invert max-w-none"
-                  dangerouslySetInnerHTML={{
-                    __html: content,
-                  }}
-                  style={{
-                    color: "var(--muted)",
-                    lineHeight: 1.8,
-                  }}
-                />
-              </div>
-
-              <div
-                style={{
-                  paddingTop: "2rem",
-                  borderTop: "1px solid var(--line)",
-                }}
-              >
-                <p className="text-sm mb-4" style={{ color: "var(--muted)" }}>
-                  ¿Interesado en este producto?
-                </p>
-                <div style={{ display: "flex", gap: "1rem" }}>
-                  <Link
-                    href="/contacto"
-                    className="contact-button"
-                    style={{
-                      flex: "1",
-                      textAlign: "center",
-                    }}
-                  >
-                    Solicitar información
-                  </Link>
-                  <a
-                    href="https://wa.me/5491168477185"
-                    className="contact-button"
-                    style={{
-                      flex: "1",
-                      textAlign: "center",
-                      backgroundColor: "transparent",
-                      border: "2px solid var(--accent)",
-                      color: "var(--accent)",
-                    }}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    WhatsApp
-                  </a>
-                </div>
+                  <MessageCircle size={18} aria-hidden />
+                  Consultar por WhatsApp
+                </a>
+                <a
+                  href={mailUrl}
+                  className="contact-button product-btn-outline"
+                >
+                  <Mail size={18} aria-hidden />
+                  Consultar por email
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Related Products Section - Optional */}
-      <section className="section" style={{ backgroundColor: "var(--surface)" }}>
+      {/* Description Section */}
+      {content && (
+        <section className="section">
+          <div className="container">
+            <h2 className="product-desc-title">Descripción del producto</h2>
+            <ProductDescription content={content} />
+          </div>
+        </section>
+      )}
+
+      {/* Product Footer CTA */}
+      <section className="product-footer-cta">
         <div className="container">
-          <h2 className="text-2xl font-bold mb-4">Otros productos</h2>
-          <p style={{ color: "var(--muted)", marginBottom: "2rem" }}>
-            Explora más opciones en nuestro catálogo
-          </p>
-          <Link
-            href="/productos"
-            className="contact-button"
-            style={{display: "inline-block"}}
-          >
-            Ver catálogo completo
+          {/* Back link */}
+          <Link href="/productos" className="product-footer-back">
+            <ArrowLeft size={16} aria-hidden />
+            Volver al catálogo
           </Link>
+
+          <div className="product-footer-line" />
+
+          {/* CTA text + buttons */}
+          <h3 className="product-footer-cta-text">
+            ¿Te interesa <strong>{title}</strong>?
+          </h3>
+          <div className="product-footer-buttons">
+            <a
+              href={whatsappUrl}
+              className="contact-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#000" }}
+            >
+              <MessageCircle size={18} aria-hidden />
+              Consultar por WhatsApp
+            </a>
+            <a
+              href={mailUrl}
+              className="contact-button product-btn-outline"
+            >
+              <Mail size={18} aria-hidden />
+              Consultar por email
+            </a>
+          </div>
+
+          <div className="product-footer-line" />
+
+          {/* Share icons */}
+          <ProductFooterShare productId={product.id} title={title} />
         </div>
       </section>
+
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CircleCheck, CircleX } from "lucide-react";
 
 export default function MarcaBlancaPage() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,8 @@ export default function MarcaBlancaPage() {
     logo: null as File | null,
     sobre_marca: "",
   });
+
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -29,11 +32,99 @@ export default function MarcaBlancaPage() {
     setFormData((prev) => ({ ...prev, logo: file }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Datos del formulario:", formData);
-    // Aquí iría la lógica para enviar el formulario
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          origin: "marca-blanca",
+          fields: {
+            "Nombre y Apellido": formData.nombre_apellido,
+            Empresa: formData.empresa,
+            Ciudad: formData.ciudad,
+            WhatsApp: formData.whatsapp,
+            Email: formData.email,
+            "Nombre de la marca": formData.nombre_marca,
+            "¿Tiene logo?": formData.tienes_logo || "No especificado",
+            "Sobre la marca": formData.sobre_marca,
+          },
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setFormData({
+          nombre_apellido: "", empresa: "", ciudad: "", whatsapp: "",
+          email: "", nombre_marca: "", tienes_logo: "", logo: null, sobre_marca: "",
+        });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
+
+  if (status === "sent") {
+    return (
+      <section className="section">
+        <div className="container grid grid-2 contact-layout">
+          <article className="card highlight">
+            <span className="kicker">Programa de negocios</span>
+            <h1>Marca Blanca</h1>
+            <p className="lead">
+              Conviértete en distribuidor autorizado de Dr Polarizados. Ofrece nuestros
+              productos bajo tu propia marca y genera ingresos adicionales.
+            </p>
+          </article>
+          <article className="card">
+            <div className="form-confirmation">
+              <div className="form-confirmation-icon">
+                <CircleCheck size={28} />
+              </div>
+              <h3>¡Solicitud enviada!</h3>
+              <p>Recibimos tu propuesta de Marca Blanca. Nos pondremos en contacto para conocer más sobre tu proyecto.</p>
+              <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+                Enviar otra solicitud
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <section className="section">
+        <div className="container grid grid-2 contact-layout">
+          <article className="card highlight">
+            <span className="kicker">Programa de negocios</span>
+            <h1>Marca Blanca</h1>
+            <p className="lead">
+              Conviértete en distribuidor autorizado de Dr Polarizados.
+            </p>
+          </article>
+          <article className="card">
+            <div className="form-confirmation form-confirmation-error">
+              <div className="form-confirmation-icon">
+                <CircleX size={28} />
+              </div>
+              <h3>Error al enviar</h3>
+              <p>Ocurrió un problema. Por favor, intentá de nuevo.</p>
+              <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+                Volver al formulario
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section">
@@ -191,8 +282,8 @@ export default function MarcaBlancaPage() {
               />
             </label>
 
-            <button type="submit" className="contact-button">
-              Enviar solicitud
+            <button type="submit" className="contact-button" disabled={status === "sending"}>
+              {status === "sending" ? "Enviando..." : "Enviar solicitud"}
             </button>
           </form>
         </article>

@@ -5,6 +5,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
 import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
+import XIcon from "./components/XIcon";
 
 const WHATSAPP_PHONE = "5491168477185";
 
@@ -40,7 +41,7 @@ export default function HeaderTools() {
     const content =
       message.length > 0
         ? message
-        : "Hola, me gustaria recibir mas informacion sobre Dr Polarizados.";
+        : "Hola, me gustaría recibir más información sobre Dr Polarizados.";
 
     return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(content)}`;
   }, [mobileMenuMessage]);
@@ -184,7 +185,7 @@ export default function HeaderTools() {
             <Linkedin size={16} aria-hidden />
           </a>
           <a href="https://www.x.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
-            <X size={16} aria-hidden />
+            <XIcon size={16} />
           </a>
         </div>
 

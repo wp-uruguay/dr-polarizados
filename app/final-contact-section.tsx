@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FinalContactForm } from "./components/FinalContactForm";
 
 export default function FinalContactSection() {
   return (
@@ -7,7 +8,7 @@ export default function FinalContactSection() {
         {/* Columna izquierda: Cards apiladas */}
         <div className="final-contact-cards">
           <article className="card final-contact-card">
-            <h3>Importación Directa</h3>
+            <h3>Stock Permanente</h3>
             <p>
               Láminas con trazabilidad de lote, consistencia óptica y disponibilidad para entregas programadas.
             </p>
@@ -39,68 +40,12 @@ export default function FinalContactSection() {
 
         {/* Columna derecha: Formulario */}
         <div className="final-contact-form">
-          <h3 style={{ marginBottom: "0.5rem" }}>Ponte en contacto</h3>
+          <h2 style={{ marginBottom: "0.5rem" }}>Ponte en contacto</h2>
           <p style={{ marginBottom: "2rem", color: "var(--muted)" }}>
             Estamos para ayudarte a crecer
           </p>
           
-          <form className="contact-form">
-            <div className="form-group">
-              <label htmlFor="name">Nombre</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Tu nombre"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="tu@email.com"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="phone">Teléfono</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="+54 9 XXXX XXXX"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="company">Empresa</label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                placeholder="Tu empresa"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="message">Mensaje</label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Cuéntanos como podemos ayudarte..."
-                rows={5}
-              />
-            </div>
-
-            <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>
-              Enviar mensaje
-            </button>
-          </form>
+          <FinalContactForm />
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Blog de Dr Polarizados con guias y tendencias sobre laminas de polarizar.",
+    "Blog de Dr Polarizados con guías y tendencias sobre láminas de polarizar.",
 };
 
 interface FeaturedImage {
@@ -73,7 +73,7 @@ export default async function BlogPage() {
   return (
     <section className="section">
       <div className="container">
-        <span className="kicker">Blog tecnico</span>
+        <span className="kicker">Blog técnico</span>
         <h1>Contenido para clientes e instaladores.</h1>
         <p className="lead">
           Base inicial de entradas para posicionar marca y autoridad en el
