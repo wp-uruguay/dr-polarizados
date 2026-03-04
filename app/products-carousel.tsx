@@ -73,8 +73,6 @@ export default function ProductsCarousel() {
         );
         const responses = await Promise.all(urls.map((u) => fetch(u)));
         const results = await Promise.all(responses.map((r) => r.json()));
-        const merged = results.flat().filter(Array.isArray);
-
         /* Deduplicate by id */
         const all: Product[] = results.flat().filter((p: Product) => p?.id);
         const unique = Array.from(new Map(all.map((p) => [p.id, p])).values());
