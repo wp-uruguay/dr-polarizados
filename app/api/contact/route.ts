@@ -46,6 +46,14 @@ function buildHtmlEmail(origin: string, fields: Record<string, string>) {
 }
 
 export async function POST(request: Request) {
+  if (!process.env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY no está configurada.");
+    return NextResponse.json(
+      { error: "El servicio de email no está configurado." },
+      { status: 503 }
+    );
+  }
+
   try {
     const body: ContactPayload = await request.json();
     const { origin, fields } = body;
