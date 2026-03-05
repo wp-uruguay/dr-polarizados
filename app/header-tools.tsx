@@ -1,6 +1,6 @@
 "use client";
 
-import { UserRound, X, Menu, ChevronDown, ShoppingCart, Users, Package } from "lucide-react";
+import { UserRound, X, Menu, ShoppingCart, Users, Package } from "lucide-react";
 import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
@@ -12,7 +12,6 @@ const WHATSAPP_PHONE = "5491168477185";
 export default function HeaderTools() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isProductsAccordionOpen, setIsProductsAccordionOpen] = useState(false);
   const [mobileMenuMessage, setMobileMenuMessage] = useState("");
   const loginEmailRef = useRef<HTMLInputElement>(null);
   const mobileFirstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -181,40 +180,23 @@ export default function HeaderTools() {
           </Link>
 
           <div className="mobile-accordion-item">
-            <button
-              type="button"
-              className="mobile-accordion-trigger"
-              onClick={() => setIsProductsAccordionOpen(!isProductsAccordionOpen)}
-              aria-expanded={isProductsAccordionOpen}
-            >
-              <span>Productos</span>
-              <ChevronDown
-                size={16}
-                style={{
-                  transform: isProductsAccordionOpen ? "rotate(180deg)" : "rotate(0deg)",
-                  transition: "transform 0.2s",
-                }}
-              />
-            </button>
-
-            {isProductsAccordionOpen && (
-              <div className="mobile-accordion-content">
-                {productItems.map((item) => {
-                  const IconComponent = item.icon;
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="mobile-accordion-link"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <IconComponent size={16} />
-                      <span>{item.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
+            <span className="mobile-accordion-label">Productos</span>
+            <div className="mobile-accordion-content">
+              {productItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="mobile-accordion-link"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <IconComponent size={16} aria-hidden />
+                    <span>{item.title}</span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
 
           <Link href="/contacto" onClick={() => setIsMobileMenuOpen(false)}>

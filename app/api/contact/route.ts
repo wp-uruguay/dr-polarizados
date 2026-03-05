@@ -54,7 +54,7 @@ export async function POST(request: Request) {
   }
 
   const resend = new Resend(apiKey);
-  const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "formulario@drpolarizados.com";
+  const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 
   try {
     const body: ContactPayload = await request.json();

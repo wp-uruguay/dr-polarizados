@@ -656,6 +656,17 @@ body.header-pinned .site-header + main {
   gap: 0;
 }
 
+.mobile-accordion-label {
+  display: block;
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+
 .mobile-accordion-trigger {
   border: 0;
   border-radius: 10px;
