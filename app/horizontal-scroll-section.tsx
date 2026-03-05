@@ -31,14 +31,14 @@ export default function HorizontalScrollSection() {
   return (
     <section className="section">
       <div className="container">
-        <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>
+        <h2 className="section-heading-center">
           Nuestras Soluciones
         </h2>
         <div className="horizontal-scroll-wrapper">
         <div className="horizontal-scroll-cards" ref={scrollRef}>
         {/* Card 1: Productos Premium */}
         <article className="card card-scroll">
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+          <div className="card-scroll-header">
             <ShoppingCart size={24} color="var(--accent)" />
             <h3 style={{ margin: 0 }}>Productos Premium</h3>
           </div>
@@ -78,7 +78,7 @@ export default function HorizontalScrollSection() {
 
         {/* Card 3: Marca Blanca */}
         <article className="card card-scroll">
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+          <div className="card-scroll-header">
             <Package size={24} color="var(--accent)" />
             <h3 style={{ margin: 0 }}>Marca Blanca</h3>
           </div>
@@ -113,7 +113,7 @@ export default function HorizontalScrollSection() {
 
         {/* Card 5: Software */}
         <article className="card card-scroll">
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+          <div className="card-scroll-header">
             <Code size={24} color="var(--accent)" />
             <h3 style={{ margin: 0 }}>Software</h3>
           </div>

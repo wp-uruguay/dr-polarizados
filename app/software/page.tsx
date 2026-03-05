@@ -90,14 +90,7 @@ export default function SoftwarePage() {
             </p>
           </div>
 
-          <div
-            className="grid"
-            style={{
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "2rem",
-              marginTop: "2rem",
-            }}
-          >
+          <div className="software-plans-grid">
             {tiers.map((tier) => (
               <article
                 key={tier.level}
@@ -246,7 +239,7 @@ export default function SoftwarePage() {
               Nuestro equipo está disponible para ayudarte a elegir el plan perfecto
               para tu negocio y resolver todas tus dudas sobre las funcionalidades.
             </p>
-            <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+            <div className="software-cta-row">
               <Link href="/contacto" className="contact-button">
                 Contáctanos
               </Link>

@@ -3680,3 +3680,89 @@ button:disabled,
     text-align: center;
   }
 }
+
+/* ── Software page ─────────────────────────────────────────── */
+.software-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.software-cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .software-plans-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ── Horizontal scroll section ─────────────────────────────── */
+.section-heading-center {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.card-scroll-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-scroll-header h3 {
+  margin: 0;
+}
+
+/* ── Final contact section ─────────────────────────────────── */
+.final-contact-title {
+  margin-bottom: 0.5rem;
+}
+
+.final-contact-subtitle {
+  margin-bottom: 2rem;
+  color: var(--muted);
+}
+
+/* ── PPF hero responsive ───────────────────────────────────── */
+.ppf-hero h1 {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 720px) {
+  .ppf-hero {
+    min-height: 280px;
+    height: auto;
+    padding: 4rem 0;
+  }
+
+  .ppf-hero h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .ppf-hero .lead {
+    font-size: 0.95rem;
+  }
+}
+
+/* ── Contact layout mobile override ───────────────────────── */
+@media (max-width: 720px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Hero video responsive ─────────────────────────────────── */
+@media (max-width: 720px) {
+  .hero-video {
+    min-height: 380px;
+  }
+}

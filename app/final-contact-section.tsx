@@ -40,8 +40,8 @@ export default function FinalContactSection() {
 
         {/* Columna derecha: Formulario */}
         <div className="final-contact-form">
-          <h2 style={{ marginBottom: "0.5rem" }}>Ponte en contacto</h2>
-          <p style={{ marginBottom: "2rem", color: "var(--muted)" }}>
+          <h2 className="final-contact-title">Ponte en contacto</h2>
+          <p className="final-contact-subtitle">
             Estamos para ayudarte a crecer
           </p>
           
