@@ -37,7 +37,6 @@ export default function HeaderTools() {
         if (isLoginOpen) setIsLoginOpen(false);
         if (isMobileMenuOpen) {
           setIsMobileMenuOpen(false);
-          setIsProductsAccordionOpen(false);
         }
       }
     };
@@ -161,10 +160,7 @@ export default function HeaderTools() {
             type="button"
             className="mobile-drawer-close"
             aria-label="Cerrar menu"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              setIsProductsAccordionOpen(false);
-            }}
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             <X size={16} aria-hidden />
           </button>
@@ -253,10 +249,7 @@ export default function HeaderTools() {
         <button
           type="button"
           className="mobile-drawer-overlay"
-          onClick={() => {
-            setIsMobileMenuOpen(false);
-            setIsProductsAccordionOpen(false);
-          }}
+          onClick={() => setIsMobileMenuOpen(false)}
           aria-label="Cerrar menu"
         />
       )}
