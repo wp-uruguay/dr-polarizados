@@ -3632,3 +3632,40 @@ button:disabled,
     transform: scale(1);
   }
 }
+/* ── Developer credit row ──────────────────────────────────── */
+.footer-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.footer-credit-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-credit-logo {
+  height: 1.1em;
+  width: auto;
+  vertical-align: middle;
+  opacity: 0.7;
+  transition: opacity 200ms ease;
+  filter: grayscale(100%);
+}
+
+.footer-credit-link:hover .footer-credit-logo {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+@media (max-width: 640px) {
+  .footer-credit {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+}

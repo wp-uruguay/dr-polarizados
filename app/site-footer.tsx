@@ -99,11 +99,29 @@ export default function SiteFooter() {
 
         {/* Bottom Bar */}
         <div className="footer-bottom">
-          <p>&copy; 2024 Dr Polarizados. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Dr Polarizados. Todos los derechos reservados.</p>
           <div className="footer-bottom-links">
             <Link href="/politica-privacidad">Política de Privacidad</Link>
             <Link href="/terminos-servicio">Términos de Servicio</Link>
+            <Link href="/sitemap.xml">Sitemap</Link>
           </div>
+        </div>
+
+        {/* Developer Credit */}
+        <div className="footer-credit">
+          <span>Desarrollado por</span>
+          <a
+            href="http://colonia.cloud"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-credit-link"
+          >
+            <img
+              src="http://colonia.cloud/wp-content/uploads/2025/12/Logo.png"
+              alt="Colonia Cloud"
+              className="footer-credit-logo"
+            />
+          </a>
         </div>
       </div>
     </footer>
