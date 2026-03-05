@@ -1,7 +1,7 @@
 "use client";
 
 import { UserRound, X, Menu, ChevronDown, ShoppingCart, Users, Package } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
 import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
@@ -14,6 +14,37 @@ export default function HeaderTools() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductsAccordionOpen, setIsProductsAccordionOpen] = useState(false);
   const [mobileMenuMessage, setMobileMenuMessage] = useState("");
+  const loginEmailRef = useRef<HTMLInputElement>(null);
+  const mobileFirstLinkRef = useRef<HTMLAnchorElement>(null);
+
+  // Focus first input when login modal opens
+  useEffect(() => {
+    if (isLoginOpen && loginEmailRef.current) {
+      loginEmailRef.current.focus();
+    }
+  }, [isLoginOpen]);
+
+  // Focus first nav link when mobile menu opens
+  useEffect(() => {
+    if (isMobileMenuOpen && mobileFirstLinkRef.current) {
+      mobileFirstLinkRef.current.focus();
+    }
+  }, [isMobileMenuOpen]);
+
+  // Close modals on Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (isLoginOpen) setIsLoginOpen(false);
+        if (isMobileMenuOpen) {
+          setIsMobileMenuOpen(false);
+          setIsProductsAccordionOpen(false);
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isLoginOpen, isMobileMenuOpen]);
 
   const productItems = [
     {
@@ -91,11 +122,24 @@ export default function HeaderTools() {
             <form className="login-form" onSubmit={(event) => event.preventDefault()}>
               <label htmlFor="login-email">
                 Email
-                <input id="login-email" name="email" type="email" placeholder="tu@email.com" />
+                <input
+                  id="login-email"
+                  name="email"
+                  type="email"
+                  placeholder="tu@email.com"
+                  ref={loginEmailRef}
+                  autoComplete="email"
+                />
               </label>
               <label htmlFor="login-password">
-                Password
-                <input id="login-password" name="password" type="password" placeholder="********" />
+                Contraseña
+                <input
+                  id="login-password"
+                  name="password"
+                  type="password"
+                  placeholder="••••••••"
+                  autoComplete="current-password"
+                />
               </label>
               <button type="submit" className="btn btn-primary">
                 Ingresar
@@ -108,6 +152,9 @@ export default function HeaderTools() {
       <aside
         className={`mobile-menu-drawer ${isMobileMenuOpen ? "is-open" : ""}`}
         aria-hidden={!isMobileMenuOpen}
+        aria-label="Menú de navegación"
+        role="dialog"
+        aria-modal={isMobileMenuOpen}
       >
         <div className="mobile-drawer-head">
           <span>Menu</span>
@@ -125,7 +172,11 @@ export default function HeaderTools() {
         </div>
 
         <nav className="mobile-drawer-nav" aria-label="Menu">
-          <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link
+            href="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            ref={mobileFirstLinkRef}
+          >
             Home
           </Link>
 

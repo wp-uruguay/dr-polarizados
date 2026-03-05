@@ -45,7 +45,7 @@ export default function Home() {
       <PremiumProductsSection cards={topCards} />
 
       <section className="section direct-solutions">
-        <video autoPlay className="direct-solutions-video" loop muted playsInline>
+        <video autoPlay className="direct-solutions-video" loop muted playsInline aria-hidden="true">
           <source src="/videos/tercera.mp4" type="video/mp4" />
         </video>
 

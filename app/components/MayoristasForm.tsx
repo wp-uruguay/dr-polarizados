@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CircleCheck, CircleX } from "lucide-react";
+import { CircleCheck, CircleX, Loader2 } from "lucide-react";
 
 export function MayoristasForm() {
   const [formData, setFormData] = useState({
@@ -82,7 +82,10 @@ export function MayoristasForm() {
             <CircleX size={28} />
           </div>
           <h3>Error al enviar</h3>
-          <p>Ocurrió un problema. Por favor, intentá de nuevo.</p>
+          <p>
+          Ocurrió un problema. Por favor, intentá de nuevo o contactanos por{" "}
+          <a href="https://wa.me/5491168477185" target="_blank" rel="noreferrer">WhatsApp</a>.
+        </p>
           <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
             Volver al formulario
           </button>
@@ -94,9 +97,9 @@ export function MayoristasForm() {
   return (
     <article className="card">
       {/* Form */}
-      <form onSubmit={handleSubmit} className="contact-form">
+      <form onSubmit={handleSubmit} className="contact-form" aria-busy={status === "sending"}>
         <label htmlFor="nombre">
-          Nombre
+          Nombre <span className="required-star" aria-hidden="true">*</span>
           <input
             id="nombre"
             name="nombre"
@@ -108,7 +111,7 @@ export function MayoristasForm() {
         </label>
 
         <label htmlFor="empresa">
-          Empresa
+          Empresa <span className="required-star" aria-hidden="true">*</span>
           <input
             id="empresa"
             name="empresa"
@@ -120,7 +123,7 @@ export function MayoristasForm() {
         </label>
 
         <label htmlFor="ciudad">
-          Ciudad
+          Ciudad <span className="required-star" aria-hidden="true">*</span>
           <input
             id="ciudad"
             name="ciudad"
@@ -132,7 +135,7 @@ export function MayoristasForm() {
         </label>
 
         <label htmlFor="tipo_negocio">
-          Tipo de negocio
+          Tipo de negocio <span className="required-star" aria-hidden="true">*</span>
           <select
             id="tipo_negocio"
             name="tipo_negocio"
@@ -151,7 +154,7 @@ export function MayoristasForm() {
         </label>
 
         <label htmlFor="email">
-          Email
+          Email <span className="required-star" aria-hidden="true">*</span>
           <input
             id="email"
             type="email"
@@ -164,7 +167,7 @@ export function MayoristasForm() {
         </label>
 
         <label htmlFor="whatsapp">
-          WhatsApp
+          WhatsApp <span className="required-star" aria-hidden="true">*</span>
           <input
             id="whatsapp"
             type="tel"
@@ -177,7 +180,7 @@ export function MayoristasForm() {
         </label>
 
         <label htmlFor="mensaje">
-          Mensaje
+          Mensaje <span className="required-star" aria-hidden="true">*</span>
           <textarea
             id="mensaje"
             name="mensaje"
@@ -188,8 +191,20 @@ export function MayoristasForm() {
           />
         </label>
 
-        <button type="submit" className="contact-button" disabled={status === "sending"}>
-          {status === "sending" ? "Enviando..." : "Enviar"}
+        <button
+          type="submit"
+          className="contact-button"
+          disabled={status === "sending"}
+          aria-busy={status === "sending"}
+        >
+          {status === "sending" ? (
+            <>
+              <Loader2 size={15} className="btn-spinner" aria-hidden="true" />
+              Enviando...
+            </>
+          ) : (
+            "Enviar"
+          )}
         </button>
       </form>
     </article>

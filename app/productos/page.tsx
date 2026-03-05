@@ -45,12 +45,13 @@ export default function ProductosPage() {
   return (
     <>
       <section className="hero hero-video">
-        <video 
+        <video
           className="hero-video-bg"
-          autoPlay 
-          muted 
-          loop 
+          autoPlay
+          muted
+          loop
           playsInline
+          aria-hidden="true"
         >
           <source src="/videos/hero-catalogo.mp4" type="video/mp4" />
         </video>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CircleCheck, CircleX } from "lucide-react";
+import { CircleCheck, CircleX, Loader2 } from "lucide-react";
 
 export function FinalContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -62,7 +62,10 @@ export function FinalContactForm() {
           <CircleX size={28} />
         </div>
         <h3>Error al enviar</h3>
-        <p>Ocurrió un problema al procesar tu mensaje. Por favor, intentá de nuevo.</p>
+        <p>
+          Ocurrió un problema al procesar tu mensaje. Por favor, intentá de nuevo o contactanos por{" "}
+          <a href="https://wa.me/5491168477185" target="_blank" rel="noreferrer">WhatsApp</a>.
+        </p>
         <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
           Volver al formulario
         </button>
@@ -71,26 +74,32 @@ export function FinalContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="contact-form">
+    <form onSubmit={handleSubmit} className="contact-form" aria-busy={status === "sending"}>
       <div className="form-group">
-        <label htmlFor="name">Nombre</label>
+        <label htmlFor="name">
+          Nombre <span className="required-star" aria-hidden="true">*</span>
+        </label>
         <input
           type="text"
           id="name"
           name="name"
           placeholder="Tu nombre"
           required
+          aria-required="true"
         />
       </div>
 
       <div className="form-group">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">
+          Email <span className="required-star" aria-hidden="true">*</span>
+        </label>
         <input
           type="email"
           id="email"
           name="email"
           placeholder="tu@email.com"
           required
+          aria-required="true"
         />
       </div>
 
@@ -124,8 +133,20 @@ export function FinalContactForm() {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary" style={{ width: "100%" }} disabled={status === "sending"}>
-        {status === "sending" ? "Enviando..." : "Enviar mensaje"}
+      <button
+        type="submit"
+        className="btn btn-primary btn-full"
+        disabled={status === "sending"}
+        aria-busy={status === "sending"}
+      >
+        {status === "sending" ? (
+          <>
+            <Loader2 size={15} className="btn-spinner" aria-hidden="true" />
+            Enviando...
+          </>
+        ) : (
+          "Enviar mensaje"
+        )}
       </button>
     </form>
   );

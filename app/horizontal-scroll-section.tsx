@@ -65,6 +65,7 @@ export default function HorizontalScrollSection() {
             loop
             muted
             playsInline
+            aria-hidden="true"
             style={{
               width: "100%",
               height: "100%",

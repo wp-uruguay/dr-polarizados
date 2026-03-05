@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CircleCheck, CircleX } from "lucide-react";
+import { CircleCheck, CircleX, Loader2 } from "lucide-react";
 
 export function AdvisoryForm() {
   const [formData, setFormData] = useState({
@@ -75,7 +75,13 @@ export function AdvisoryForm() {
           <CircleX size={28} />
         </div>
         <h3>Error al enviar</h3>
-        <p>Intentá de nuevo en unos momentos.</p>
+        <p>
+          Intentá de nuevo en unos momentos o contactanos por{" "}
+          <a href="https://wa.me/5491168477185" target="_blank" rel="noreferrer">
+            WhatsApp
+          </a>
+          .
+        </p>
         <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
           Volver al formulario
         </button>
@@ -84,41 +90,73 @@ export function AdvisoryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="advisory-form-content">
-      <input
-        type="text"
-        name="nombre"
-        placeholder="Nombre"
-        value={formData.nombre}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="empresa"
-        placeholder="Empresa"
-        value={formData.empresa}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="text"
-        name="whatsapp"
-        placeholder="WhatsApp"
-        value={formData.whatsapp}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-      <button type="submit" className="advisory-submit-btn" disabled={status === "sending"}>
-        {status === "sending" ? "Enviando..." : "Enviar"}
+    <form onSubmit={handleSubmit} className="advisory-form-content" aria-busy={status === "sending"}>
+      <label htmlFor="advisory-nombre">
+        Nombre <span className="required-star" aria-hidden="true">*</span>
+        <input
+          id="advisory-nombre"
+          type="text"
+          name="nombre"
+          placeholder="Tu nombre completo"
+          value={formData.nombre}
+          onChange={handleChange}
+          required
+          aria-required="true"
+        />
+      </label>
+      <label htmlFor="advisory-empresa">
+        Empresa <span className="required-star" aria-hidden="true">*</span>
+        <input
+          id="advisory-empresa"
+          type="text"
+          name="empresa"
+          placeholder="Nombre de tu empresa"
+          value={formData.empresa}
+          onChange={handleChange}
+          required
+          aria-required="true"
+        />
+      </label>
+      <label htmlFor="advisory-whatsapp">
+        WhatsApp <span className="required-star" aria-hidden="true">*</span>
+        <input
+          id="advisory-whatsapp"
+          type="tel"
+          name="whatsapp"
+          placeholder="+54 9 XXXX XXXX"
+          value={formData.whatsapp}
+          onChange={handleChange}
+          required
+          aria-required="true"
+        />
+      </label>
+      <label htmlFor="advisory-email">
+        Email <span className="required-star" aria-hidden="true">*</span>
+        <input
+          id="advisory-email"
+          type="email"
+          name="email"
+          placeholder="tu@email.com"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          aria-required="true"
+        />
+      </label>
+      <button
+        type="submit"
+        className="advisory-submit-btn"
+        disabled={status === "sending"}
+        aria-busy={status === "sending"}
+      >
+        {status === "sending" ? (
+          <>
+            <Loader2 size={15} className="btn-spinner" aria-hidden="true" />
+            Enviando...
+          </>
+        ) : (
+          "Enviar"
+        )}
       </button>
     </form>
   );

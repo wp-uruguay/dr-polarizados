@@ -101,13 +101,13 @@ export default async function BlogPage() {
                       </div>
                     )}
                     <div className="blog-card-content">
-                      <p style={{ color: "#7a7a7a", fontSize: ".82rem", margin: 0 }}>
+                      <p className="blog-card-date">
                         {formatDate(post.date)}
                       </p>
-                      <h3 style={{ marginTop: ".5rem", marginBottom: ".25rem" }}>
+                      <h3 className="blog-card-title">
                         {stripHtml(post.title.rendered)}
                       </h3>
-                      <p style={{ margin: 0 }}>{stripHtml(post.excerpt.rendered)}</p>
+                      <p>{stripHtml(post.excerpt.rendered)}</p>
                     </div>
                   </article>
                 </Link>

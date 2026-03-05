@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CircleCheck, CircleX } from "lucide-react";
+import { CircleCheck, CircleX, Loader2 } from "lucide-react";
 
 export function ContactoForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -64,7 +64,10 @@ export function ContactoForm() {
           <CircleX size={28} />
         </div>
         <h3>Error al enviar</h3>
-        <p>Ocurrió un problema al procesar tu solicitud. Por favor, intentá de nuevo.</p>
+        <p>
+          Ocurrió un problema al procesar tu solicitud. Por favor, intentá de nuevo o contactanos por{" "}
+          <a href="https://wa.me/5491168477185" target="_blank" rel="noreferrer">WhatsApp</a>.
+        </p>
         <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
           Volver al formulario
         </button>
@@ -73,10 +76,10 @@ export function ContactoForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="contact-form">
+    <form onSubmit={handleSubmit} className="contact-form" aria-busy={status === "sending"}>
       <label htmlFor="nombre">
-        Nombre
-        <input id="nombre" name="nombre" placeholder="Tu nombre" required />
+        Nombre <span className="required-star" aria-hidden="true">*</span>
+        <input id="nombre" name="nombre" placeholder="Tu nombre" required aria-required="true" />
       </label>
 
       <label htmlFor="empresa">
@@ -85,8 +88,8 @@ export function ContactoForm() {
       </label>
 
       <label htmlFor="tipo-cliente">
-        Tipo de cliente
-        <select id="tipo-cliente" name="tipoCliente" className="contact-select" defaultValue="" required>
+        Tipo de cliente <span className="required-star" aria-hidden="true">*</span>
+        <select id="tipo-cliente" name="tipoCliente" className="contact-select" defaultValue="" required aria-required="true">
           <option value="" disabled>
             Selecciona una opción
           </option>
@@ -98,13 +101,14 @@ export function ContactoForm() {
       </label>
 
       <label htmlFor="producto-interes">
-        Producto de interés
+        Producto de interés <span className="required-star" aria-hidden="true">*</span>
         <select
           id="producto-interes"
           name="productoInteres"
           className="contact-select"
           defaultValue=""
           required
+          aria-required="true"
         >
           <option value="" disabled>
             Selecciona una opción
@@ -117,13 +121,13 @@ export function ContactoForm() {
       </label>
 
       <label htmlFor="email">
-        Email
-        <input id="email" type="email" name="email" placeholder="tu@email.com" required />
+        Email <span className="required-star" aria-hidden="true">*</span>
+        <input id="email" type="email" name="email" placeholder="tu@email.com" required aria-required="true" />
       </label>
 
       <label htmlFor="whatsapp">
         WhatsApp
-        <input id="whatsapp" type="tel" name="whatsapp" placeholder="+54 9 ..." />
+        <input id="whatsapp" type="tel" name="whatsapp" placeholder="+54 9 XXXX XXXX" />
       </label>
 
       <label htmlFor="mensaje">
@@ -135,8 +139,15 @@ export function ContactoForm() {
         />
       </label>
 
-      <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
-        {status === "sending" ? "Enviando..." : "Enviar solicitud"}
+      <button type="submit" className="btn btn-primary" disabled={status === "sending"} aria-busy={status === "sending"}>
+        {status === "sending" ? (
+          <>
+            <Loader2 size={15} className="btn-spinner" aria-hidden="true" />
+            Enviando...
+          </>
+        ) : (
+          "Enviar solicitud"
+        )}
       </button>
     </form>
   );

@@ -72,6 +72,13 @@ a {
   text-decoration: none;
 }
 
+/* ── Focus styles ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .site-shell {
   min-height: 100vh;
   display: flex;
@@ -1330,6 +1337,17 @@ p {
   flex: 1;
 }
 
+.blog-card-date {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.blog-card-title {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
 .card h3 {
   font-size: 1.25rem;
   font-weight: 700;
@@ -1575,6 +1593,16 @@ label {
   font-weight: 600;
 }
 
+.form-group {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.87rem;
+  font-weight: 600;
+}
+
 input,
 textarea,
 select {
@@ -1585,11 +1613,50 @@ select {
   padding: 0.7rem 0.8rem;
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   color: var(--ink);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 textarea {
   min-height: 130px;
   resize: vertical;
+}
+
+/* ── Required field indicator ──────────────────────────────── */
+.required-star {
+  color: var(--accent);
+  margin-left: 0.15em;
+}
+
+/* ── Disabled button states ────────────────────────────────── */
+button:disabled,
+.btn:disabled,
+.contact-button:disabled,
+.advisory-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Full-width button variant ─────────────────────────────── */
+.btn-full {
+  width: 100%;
+}
+
+/* ── Spinner animation ─────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.btn-spinner {
+  animation: spin 0.65s linear infinite;
+  flex-shrink: 0;
 }
 
 .contact-form .contact-select {
