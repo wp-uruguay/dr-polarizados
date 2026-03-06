@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart, Zap, Package, Code } from "lucide-react";
+import { ShoppingCart, Zap, Package, Code, ChevronRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 export default function HorizontalScrollSection() {
@@ -36,24 +36,24 @@ export default function HorizontalScrollSection() {
         </h2>
         <div className="horizontal-scroll-wrapper">
         <div className="horizontal-scroll-cards" ref={scrollRef}>
-        {/* Card 1: Productos Premium */}
+        {/* Card 1: Productos */}
         <article className="card card-scroll">
           <div className="card-scroll-header">
-            <ShoppingCart size={24} color="var(--accent)" />
-            <h3 style={{ margin: 0 }}>Productos Premium</h3>
+            <ShoppingCart color="var(--accent)" />
+            <h3>Productos</h3>
           </div>
           <p className="lead">
             Láminas de polarizado de alta calidad con protección UV avanzada, rechazo térmico superior y oscurecimiento óptico de excelencia.
           </p>
-          <ul style={{ fontSize: "0.9rem", lineHeight: "1.6", marginBottom: "1rem" }}>
+          <ul className="scroll-card-list">
             <li>✓ Control solar efectivo</li>
             <li>✓ Protección 99% UV</li>
             <li>✓ Durabilidad garantizada</li>
             <li>✓ Acabado profesional</li>
           </ul>
           <div className="cta-row">
-            <Link href="/productos" className="btn btn-ghost">
-              Explorar productos
+            <Link href="/productos" className="btn-ver">
+              Ver <ChevronRight size={18} />
             </Link>
           </div>
         </article>
@@ -79,21 +79,21 @@ export default function HorizontalScrollSection() {
         {/* Card 3: Marca Blanca */}
         <article className="card card-scroll">
           <div className="card-scroll-header">
-            <Package size={24} color="var(--accent)" />
-            <h3 style={{ margin: 0 }}>Marca Blanca</h3>
+            <Package color="var(--accent)" />
+            <h3>Marca Blanca</h3>
           </div>
           <p className="lead">
             Desarrollo de productos personalizados bajo tu marca. Soluciones completas para emprendedores y distribuidores.
           </p>
-          <ul style={{ fontSize: "0.9rem", lineHeight: "1.6", marginBottom: "1rem" }}>
+          <ul className="scroll-card-list">
             <li>✓ Diseño personalizado</li>
             <li>✓ Volúmenes flexibles</li>
             <li>✓ Soporte técnico full</li>
             <li>✓ Margen competitivo</li>
           </ul>
           <div className="cta-row">
-            <Link href="/marca-blanca" className="btn btn-ghost">
-              Cotizar ahora
+            <Link href="/marca-blanca" className="btn-ver">
+              Ver <ChevronRight size={18} />
             </Link>
           </div>
         </article>
@@ -114,21 +114,21 @@ export default function HorizontalScrollSection() {
         {/* Card 5: Software */}
         <article className="card card-scroll">
           <div className="card-scroll-header">
-            <Code size={24} color="var(--accent)" />
-            <h3 style={{ margin: 0 }}>Software</h3>
+            <Code color="var(--accent)" />
+            <h3>Software</h3>
           </div>
           <p className="lead">
             Herramienta integral para gestión de instalaciones, inventario y cotizaciones. Analytics y reportes en tiempo real.
           </p>
-          <ul style={{ fontSize: "0.9rem", lineHeight: "1.6", marginBottom: "1rem" }}>
+          <ul className="scroll-card-list">
             <li>✓ Gestión de órdenes</li>
             <li>✓ Inventario automático</li>
             <li>✓ Reportes detallados</li>
             <li>✓ Acceso móvil 24/7</li>
           </ul>
           <div className="cta-row">
-            <Link href="/software" className="btn btn-ghost">
-              Conocer más
+            <Link href="/software" className="btn-ver">
+              Ver <ChevronRight size={18} />
             </Link>
           </div>
         </article>
@@ -146,7 +146,10 @@ export default function HorizontalScrollSection() {
           />
         </article>
       </div>
-      </div>
+          <span className="scroll-hint" aria-hidden="true">
+            <ChevronRight size={28} strokeWidth={1.5} />
+          </span>
+        </div>
       </div>
     </section>
   );

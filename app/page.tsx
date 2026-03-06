@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { CircleCheck } from "lucide-react";
 import HeroSlider from "./hero-slider";
 import PremiumProductsSection from "./premium-products-section";
 import HorizontalScrollSection from "./horizontal-scroll-section";
 import FinalContactSection from "./final-contact-section";
-import ProductsCarousel from "./products-carousel";
+import AutosCarousel from "./components/AutosCarousel";
 import type { PremiumCard } from "./premium-products-section";
 
 const topCards: PremiumCard[] = [
@@ -55,15 +56,12 @@ export default function Home() {
           <div className="direct-solutions-copy">
             <h2>Soluciones Directas</h2>
             <h3>Si instalás, sabés esto:</h3>
-            <p>
-              El margen se achica y el stock se desordena.
-              <br />
-              No sabés cuánto ganás realmente por metro ni por rollo.
-              <br />
-              Cambiar de proveedor es un riesgo.
-              <br />
-              DP te ofrece una solución profesional para todo eso.
-            </p>
+            <ul className="check-list">
+              <li><CircleCheck size={20} strokeWidth={2.2} aria-hidden /> Querés mejores márgenes y un stock que no te dé dolores de cabeza.</li>
+              <li><CircleCheck size={20} strokeWidth={2.2} aria-hidden /> Necesitás saber exactamente cuánto ganás por metro y por rollo.</li>
+              <li><CircleCheck size={20} strokeWidth={2.2} aria-hidden /> Y merecés un proveedor que sea un verdadero aliado de tu negocio.</li>
+            </ul>
+            <p>En DP trabajamos para que todo eso sea posible.</p>
 
             <div className="cta-row">
               <Link href="/contacto" className="btn btn-primary">
@@ -78,7 +76,9 @@ export default function Home() {
 
       <FinalContactSection />
 
-      <ProductsCarousel />
+      <div className="autos-carousel-fullwidth" style={{marginBottom: 0, paddingBottom: 0}}>
+        <AutosCarousel />
+      </div>
     </div>
   );
 }

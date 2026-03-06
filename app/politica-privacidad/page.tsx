@@ -102,7 +102,7 @@ export default function PoliticaPrivacidadPage() {
               Para ejercer cualquiera de los derechos mencionados, puedes contactarnos en:
             </p>
             <ul>
-              <li>Email: <a href="mailto:comunicaciones@drpolarizados.com">comunicaciones@drpolarizados.com</a></li>
+              <li>Email: <a href="mailto:ventas@drpolarizados.com">ventas@drpolarizados.com</a></li>
               <li>WhatsApp: +54 9 1168 477 185</li>
               <li>Dirección: Buenos Aires, Argentina</li>
             </ul>
@@ -125,7 +125,7 @@ export default function PoliticaPrivacidadPage() {
               Si tienes preguntas sobre esta Política de Privacidad o sobre cómo manejamos tus datos personales, contáctanos:
             </p>
             <ul>
-              <li><strong>Email:</strong> <a href="mailto:comunicaciones@drpolarizados.com">comunicaciones@drpolarizados.com</a></li>
+              <li><strong>Email:</strong> <a href="mailto:ventas@drpolarizados.com">ventas@drpolarizados.com</a></li>
               <li><strong>Teléfono:</strong> +54 9 1168 477 185</li>
               <li><strong>Ubicación:</strong> Buenos Aires, República Argentina</li>
             </ul>

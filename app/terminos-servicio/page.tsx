@@ -144,7 +144,7 @@ export default function TerminosServicioPage() {
               Antes de iniciar cualquier acción legal, te solicitamos que intentes resolver la disputa a través de negociación directa con nuestro equipo. Puedes contactarnos en:
             </p>
             <ul>
-              <li>Email: <a href="mailto:comunicaciones@drpolarizados.com">comunicaciones@drpolarizados.com</a></li>
+              <li>Email: <a href="mailto:ventas@drpolarizados.com">ventas@drpolarizados.com</a></li>
               <li>WhatsApp: +54 9 1168 477 185</li>
             </ul>
 
@@ -176,7 +176,7 @@ export default function TerminosServicioPage() {
               Para preguntas sobre estos Términos de Servicio:
             </p>
             <ul>
-              <li><strong>Email:</strong> <a href="mailto:comunicaciones@drpolarizados.com">comunicaciones@drpolarizados.com</a></li>
+              <li><strong>Email:</strong> <a href="mailto:ventas@drpolarizados.com">ventas@drpolarizados.com</a></li>
               <li><strong>Teléfono:</strong> +54 9 1168 477 185</li>
               <li><strong>Ubicación:</strong> Buenos Aires, República Argentina</li>
             </ul>

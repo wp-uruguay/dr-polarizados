@@ -79,9 +79,9 @@ export default function TopContactBar() {
             <span className="top-separator" aria-hidden>
               |
             </span>
-            <a className="top-inline-link" href="mailto:comunicaciones@drpolarizados.com">
+            <a className="top-inline-link" href="mailto:ventas@drpolarizados.com">
               <Mail size={14} aria-hidden />
-              <span>comunicaciones@drpolarizados.com</span>
+              <span>ventas@drpolarizados.com</span>
             </a>
             <span className="top-separator" aria-hidden>
               |

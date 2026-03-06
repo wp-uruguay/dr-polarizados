@@ -130,105 +130,52 @@ export function ProductsGrid({ productCat, columns = 3, categoryId }: ProductsGr
             key={product.id}
             href={`/productos/${product.id}`}
             className="block"
+            style={{ textDecoration: "none" }}
           >
             <article
-              className="card group"
+              className="card group product-card"
               style={{
                 display: "flex",
                 flexDirection: "column",
                 height: "100%",
+                transition: "border-color 0.3s, box-shadow 0.3s, transform 0.3s",
+                borderColor: "#2ecc71"
               }}
             >
-            <div
-              className="relative w-full mb-4 rounded overflow-hidden"
-              style={{ aspectRatio: "1", flex: "0 0 auto" }}
-            >
-              <Image
-                src={imageSrc}
-                alt={title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform"
-              />
-            </div>
-            {categoryId === "polarizado-vehicular" && (
-              <div style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                gap: "1.2rem",
-                marginBottom: "1rem",
-                padding: "0.8rem 0"
-              }}>
-                <Eye size={20} style={{ color: "#2ecc71" }} aria-label="Protección UV" />
-                <Sun size={20} style={{ color: "#2ecc71" }} aria-label="Control Solar" />
-                <Thermometer size={20} style={{ color: "#2ecc71" }} aria-label="Reducción Térmica" />
-              </div>
-            )}
-            <div style={{ flex: "1 1 auto", display: "flex", flexDirection: "column" }}>
-              <h3
-                className="font-bold text-lg mb-2 group-hover:text-orange-600 transition-colors"
-                style={{ color: "inherit" }}
-              >
-                {title}
-              </h3>
-              <p
-                className="text-sm text-gray-400 mb-4 line-clamp-2"
-                style={{
-                  flex: "1 1 auto",
-                  overflow: "hidden",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 2,
-                  WebkitBoxOrient: "vertical",
-                }}
-                dangerouslySetInnerHTML={{
-                  __html: excerpt.replace(/<[^>]*>/g, "").substring(0, 120),
-                }}
-              />
               <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  paddingTop: "1rem",
-                }}
+                className="relative w-full mb-4 rounded overflow-hidden product-card-image"
+                style={{ aspectRatio: "1", flex: "0 0 auto", transition: "transform 0.3s" }}
               >
-                <button
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    fontSize: "0.9rem",
-                    padding: "0.5rem 1rem",
-                    background: "var(--accent)",
-                    border: "none",
-                    color: "#000000",
-                    cursor: "pointer",
-                    fontWeight: 600,
-                    borderRadius: "0.375rem",
-                    transition: "all 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#ff7d1f";
-                    e.currentTarget.style.transform = "translateY(-1px)";
-                    const svg = e.currentTarget.querySelector("svg");
-                    if (svg) {
-                      svg.style.animation = "slideRight 0.6s ease";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "var(--accent)";
-                    e.currentTarget.style.transform = "translateY(0)";
-                    const svg = e.currentTarget.querySelector("svg");
-                    if (svg) {
-                      svg.style.animation = "none";
-                    }
-                  }}
-                >
-                  Ver
-                  <ChevronRight size={18} />
-                </button>
+                <Image
+                  src={imageSrc}
+                  alt={title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform"
+                />
               </div>
-            </div>
-          </article>
+              <div style={{ flex: "1 1 auto", display: "flex", flexDirection: "column" }}>
+                <h3
+                  className="font-bold text-base mb-2 group-hover:text-green-600 transition-colors"
+                  style={{ color: "inherit", display: "flex", alignItems: "center", gap: 6 }}
+                >
+                  <ChevronRight size={18} style={{ color: "#2ecc71", marginRight: 4 }} />
+                  {title}
+                </h3>
+                <p
+                  className="text-xs text-gray-400 mb-4 line-clamp-2"
+                  style={{
+                    flex: "1 1 auto",
+                    overflow: "hidden",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: excerpt.replace(/<[^>]*>/g, "").substring(0, 120),
+                  }}
+                />
+              </div>
+            </article>
           </Link>
         );
       })}

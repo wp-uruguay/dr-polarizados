@@ -22,7 +22,7 @@ export default function SiteFooter() {
               />
             </Link>
             <p className="footer-tagline">
-              Stock permanente y distribución profesional de láminas de polarizar para automotriz, arquitectura y flotas.
+                Distribucion profesional de laminas de control solar de autos y arquitectura para toda la Argentina.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ export default function SiteFooter() {
               </div>
               <div className="footer-contact-item">
                 <Mail size={16} />
-                <a href="mailto:comunicaciones@drpolarizados.com">comunicaciones@drpolarizados.com</a>
+                <a href="mailto:ventas@drpolarizados.com">ventas@drpolarizados.com</a>
               </div>
               <div className="footer-contact-item">
                 <MapPin size={16} />

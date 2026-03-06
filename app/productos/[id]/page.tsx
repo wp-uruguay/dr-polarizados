@@ -123,7 +123,7 @@ export default async function ProductPage({
   const whatsappUrl = `https://wa.me/5491168477185?text=${whatsappMessage}`;
   const mailSubject = encodeURIComponent(`Consulta por ${title}`);
   const mailBody = encodeURIComponent(`Hola, quiero consultar por el precio de ${title}`);
-  const mailUrl = `mailto:comunicaciones@drpolarizados.com?subject=${mailSubject}&body=${mailBody}`;
+  const mailUrl = `mailto:ventas@drpolarizados.com?subject=${mailSubject}&body=${mailBody}`;
 
   return (
     <>

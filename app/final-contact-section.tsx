@@ -1,41 +1,20 @@
-import Link from "next/link";
 import { FinalContactForm } from "./components/FinalContactForm";
 
 export default function FinalContactSection() {
   return (
     <section className="section final-contact-section">
       <div className="container final-contact-container">
-        {/* Columna izquierda: Cards apiladas */}
-        <div className="final-contact-cards">
-          <article className="card final-contact-card">
-            <h3>Stock Permanente</h3>
-            <p>
-              Láminas con trazabilidad de lote, consistencia óptica y disponibilidad para entregas programadas.
-            </p>
-            <Link href="/productos" className="btn btn-ghost btn-sm">
-              Conocer más
-            </Link>
-          </article>
-
-          <article className="card final-contact-card final-contact-card--highlight">
-            <h3>Enfoque B2B</h3>
-            <p>
-              Planes para talleres, redes de instalación, concesionarios y obras con requerimientos técnicos específicos.
-            </p>
-            <Link href="/mayoristas" className="btn btn-ghost btn-sm">
-              Cotizar ahora
-            </Link>
-          </article>
-
-          <article className="card final-contact-card">
-            <h3>Performance Real</h3>
-            <p>
-              Control solar, rechazo UV y reducción térmica con opciones por nivel de visibilidad y uso.
-            </p>
-            <Link href="/productos" className="btn btn-ghost btn-sm">
-              Explorar
-            </Link>
-          </article>
+        {/* Columna izquierda: Video */}
+        <div className="final-contact-video-wrapper">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="final-contact-video"
+          >
+            <source src="/autos/black.mp4" type="video/mp4" />
+          </video>
         </div>
 
         {/* Columna derecha: Formulario */}

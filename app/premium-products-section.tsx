@@ -48,7 +48,7 @@ type PremiumProductsSectionProps = {
 };
 
 export default function PremiumProductsSection({
-  title = "Productos premium",
+  title = "Productos",
   cards = defaultPremiumCards,
 }: PremiumProductsSectionProps) {
   const loopCards = [...cards, ...cards];
@@ -126,7 +126,7 @@ export default function PremiumProductsSection({
           })}
         </div>
 
-        <div className="premium-carousel-shell" aria-label="Productos premium">
+        <div className="premium-carousel-shell" aria-label="Productos">
           <div className="premium-carousel-track">
             {loopCards.map((card, idx) => {
               const Icon = card.icon ? iconMap[card.icon] : null;
