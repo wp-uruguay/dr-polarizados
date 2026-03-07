@@ -17,7 +17,12 @@ export const metadata: Metadata = {
     "Contacto comercial de Dr Polarizados para compras mayoristas y distribución.",
 };
 
-export default function ContactoPage() {
+export default async function ContactoPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ mensaje?: string }>;
+}) {
+  const { mensaje } = await searchParams;
   return (
     <section className="section">
       <div className="container grid grid-2 contact-layout">
@@ -86,7 +91,7 @@ export default function ContactoPage() {
         </div>
 
         <article className="card">
-          <ContactoForm />
+          <ContactoForm defaultMensaje={mensaje} />
         </article>
       </div>
     </section>

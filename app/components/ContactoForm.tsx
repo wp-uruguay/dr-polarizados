@@ -3,7 +3,11 @@
 import { CircleCheck, CircleX, Loader2 } from "lucide-react";
 import { useState } from "react";
 
-export function ContactoForm() {
+interface ContactoFormProps {
+  defaultMensaje?: string;
+}
+
+export function ContactoForm({ defaultMensaje }: ContactoFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
@@ -200,6 +204,7 @@ export function ContactoForm() {
           id="mensaje"
           name="mensaje"
           placeholder="Cuéntanos volumen aproximado y tipo de lámina."
+          defaultValue={defaultMensaje}
         />
       </label>
 

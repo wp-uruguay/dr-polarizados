@@ -1,16 +1,7 @@
-import {
-  ArrowDown,
-  ArrowUp,
-  Building2,
-  Car,
-  MessageCircle,
-  Shield,
-  Zap,
-} from "lucide-react";
+import { Building2, Car, MessageCircle, Shield, Zap } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdvisoryForm } from "@/app/components/AdvisoryForm";
-import { ProductsGrid } from "@/app/components/ProductsGrid";
 
 export const metadata: Metadata = {
   title: "Productos",
@@ -18,42 +9,54 @@ export const metadata: Metadata = {
     "Líneas de láminas de polarizar de Dr Polarizados para automotriz y arquitectura.",
 };
 
-export default function ProductosPage() {
-  const productCategories = [
-    {
-      title: "Polarizado Vehicular",
-      description:
-        "Láminas de control solar diseñadas para vehículos, ofreciendo privacidad, protección UV y reducción de calor.",
-      icon: Car,
-      id: "polarizado-vehicular",
-      productCat: 124,
-    },
-    {
-      title: "PPF",
-      description:
-        "Películas de protección transparente que resguardan la pintura del vehículo contra rayones, impactos y elementos.",
-      icon: Zap,
-      id: "ppf",
-      productCat: 125,
-    },
-    {
-      title: "Seguridad Vehicular",
-      description:
-        "Soluciones de refuerzo de cristal para protección contra impactos e incremento de seguridad estructural.",
-      icon: Shield,
-      id: "seguridad-vehicular",
-      productCat: 128,
-    },
-    {
-      title: "Arquitectura",
-      description:
-        "Películas especializadas para edificios y espacios comerciales con control térmico y estético optimizado.",
-      icon: Building2,
-      id: "arquitectura",
-      productCat: 127,
-    },
-  ];
+const productCategories = [
+  {
+    title: "Polarizado Vehicular",
+    description:
+      "Láminas de control solar diseñadas para vehículos, ofreciendo privacidad, protección UV y reducción de calor.",
+    icon: Car,
+    id: "polarizado-vehicular",
+    bg: "/autos/15632.jpg",
+    kicker: "Control Solar Automotriz",
+    mensaje:
+      "Hola, me interesa obtener información sobre Polarizado Vehicular.",
+  },
+  {
+    title: "PPF",
+    description:
+      "Películas de protección transparente que resguardan la pintura del vehículo contra rayones, impactos y elementos.",
+    icon: Zap,
+    id: "ppf",
+    bg: "/ppf.jpg",
+    kicker: "Máxima protección para la pintura automotriz",
+    mensaje:
+      "Hola, me interesa obtener información sobre PPF (Paint Protection Film).",
+  },
+  {
+    title: "Seguridad Vehicular",
+    description:
+      "Soluciones de refuerzo de cristal para protección contra impactos e incremento de seguridad estructural.",
+    icon: Shield,
+    id: "seguridad-vehicular",
+    bg: "/autos/1233.jpg",
+    kicker: "Protección estructural del cristal",
+    mensaje:
+      "Hola, me interesa obtener información sobre Seguridad Vehicular.",
+  },
+  {
+    title: "Arquitectura",
+    description:
+      "Películas especializadas para edificios y espacios comerciales con control térmico y estético optimizado.",
+    icon: Building2,
+    id: "arquitectura",
+    bg: "/autos/1028.jpg",
+    kicker: "Control térmico y estético para edificios",
+    mensaje:
+      "Hola, me interesa obtener información sobre láminas de Arquitectura.",
+  },
+];
 
+export default function ProductosPage() {
   return (
     <>
       <section className="hero hero-video">
@@ -77,9 +80,7 @@ export default function ProductosPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="contact-button"
-              style={{
-                marginTop: "1rem",
-              }}
+              style={{ marginTop: "1rem" }}
             >
               💬 WhatsApp
             </a>
@@ -87,141 +88,47 @@ export default function ProductosPage() {
         </div>
       </section>
 
-      <section className="section" id="categorias">
-        <div className="container">
-          <div className="grid grid-4">
-            {productCategories.map((category) => {
-              const IconComponent = category.icon;
-              return (
-                <article className="card product-card" key={category.title}>
-                  <div className="product-card-header">
-                    <IconComponent
-                      size={28}
-                      className="product-card-icon"
-                      aria-hidden
-                    />
-                    <h3>{category.title}</h3>
-                  </div>
-                  <p>{category.description}</p>
-                  <a href={`#${category.id}`} className="product-card-button">
-                    Ver productos
-                    <ArrowDown size={16} aria-hidden />
-                  </a>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {productCategories.map((category) => {
-        // Render PPF section after Polarizado Vehicular
-        if (category.id === "polarizado-vehicular") {
-          return (
-            <div key="ppf-section">
-              <section className="section" id={category.id}>
-                <div className="container">
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      flexWrap: "wrap",
-                      gap: "1rem",
-                      marginBottom: "1.5rem",
-                    }}
-                  >
-                    <h2 style={{ margin: 0 }}>{category.title}</h2>
-                    <a
-                      href="#categorias"
-                      className="back-to-categories-btn"
-                      title="Volver a categorías"
-                    >
-                      <ArrowUp size={14} aria-hidden />
-                      Volver a categorías
-                    </a>
-                  </div>
-                  <p className="lead">{category.description}</p>
-                  <ProductsGrid
-                    productCat={category.productCat}
-                    columns={3}
-                  />
-                </div>
-              </section>
-
-              {/* PPF Hero Section */}
-              <section className="ppf-hero" id="ppf">
-                <div className="ppf-hero-inner">
-                  <div className="container">
-                    <div className="ppf-hero-content">
-                      <span className="kicker">
-                        Máxima protección para la pintura automotriz
-                      </span>
-                      <h1
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.75rem",
-                          margin: "1rem 0 1.5rem 0",
-                        }}
-                      >
-                        <Shield size={36} color="var(--accent)" aria-hidden />
-                        PPF Premium
-                      </h1>
-                      <p className="lead">
-                        Consulta por nuestro stock de rollos de PPF para
-                        protección automotriz, tenemos calidades y precios
-                        adaptados a tu negocio.
-                      </p>
-                      <Link
-                        href="/contacto"
-                        className="contact-button"
-                        style={{
-                          marginTop: "1.5rem",
-                          display: "inline-flex",
-                          width: "auto",
-                          color: "#000000",
-                        }}
-                      >
-                        <MessageCircle size={18} aria-hidden />
-                        Consultar por PPF
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-          );
-        }
-
-        // Skip PPF category as it's now handled above
-        if (category.id === "ppf") return null;
+        const IconComponent = category.icon;
+        const encodedMensaje = encodeURIComponent(category.mensaje);
 
         return (
-          <section className="section" id={category.id} key={category.id}>
-            <div className="container">
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <h2 style={{ margin: 0 }}>{category.title}</h2>
-                <a
-                  href="#categorias"
-                  className="back-to-categories-btn"
-                  title="Volver a categorías"
-                >
-                  <ArrowUp size={14} aria-hidden />
-                  Volver a categorías
-                </a>
+          <section
+            key={category.id}
+            className="cat-hero"
+            id={category.id}
+            style={{
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("${category.bg}")`,
+            }}
+          >
+            <div className="cat-hero-inner">
+              <div className="container">
+                <div className="cat-hero-content">
+                  <span className="kicker">{category.kicker}</span>
+                  <h1>
+                    <IconComponent
+                      size={36}
+                      color="var(--accent)"
+                      aria-hidden
+                    />
+                    {category.title}
+                  </h1>
+                  <p className="lead">{category.description}</p>
+                  <Link
+                    href={`/contacto?mensaje=${encodedMensaje}`}
+                    className="contact-button"
+                    style={{
+                      marginTop: "1.5rem",
+                      display: "inline-flex",
+                      width: "auto",
+                      color: "#000000",
+                    }}
+                  >
+                    <MessageCircle size={18} aria-hidden />
+                    Consultar por {category.title}
+                  </Link>
+                </div>
               </div>
-              <p className="lead">{category.description}</p>
-              <ProductsGrid
-                productCat={category.productCat}
-                columns={category.id === "polarizado-vehicular" ? 3 : 4}
-              />
             </div>
           </section>
         );

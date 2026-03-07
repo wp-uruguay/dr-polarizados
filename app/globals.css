@@ -3994,3 +3994,90 @@ button:disabled,
     min-height: 380px;
   }
 }
+
+/* ── Category hero sections ────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cat-hero {
+  width: 100vw;
+  position: relative;
+  margin-left: calc(50% - 50vw);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 3rem 0;
+  height: 55vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.cat-hero-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.cat-hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 70ch;
+  animation: fadeInUp 0.65s ease both;
+}
+
+.cat-hero h1 {
+  color: #ffffff;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem 0;
+}
+
+.cat-hero .kicker {
+  animation: fadeInUp 0.5s ease both;
+}
+
+.cat-hero .lead {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.1rem;
+  max-width: 60ch;
+  animation: fadeInUp 0.65s 0.1s ease both;
+}
+
+.cat-hero .contact-button {
+  animation: fadeInUp 0.65s 0.2s ease both;
+}
+
+@media (max-width: 720px) {
+  .cat-hero {
+    min-height: 280px;
+    height: auto;
+    padding: 4rem 0;
+    background-attachment: scroll;
+  }
+
+  .cat-hero h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .cat-hero .lead {
+    font-size: 1.05rem;
+  }
+
+  .ppf-hero {
+    background-attachment: scroll;
+  }
+}
