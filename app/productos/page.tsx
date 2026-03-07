@@ -144,7 +144,6 @@ export default function ProductosPage() {
                   <ProductsGrid
                     productCat={category.productCat}
                     columns={3}
-                    categoryId={category.id}
                   />
                 </div>
               </section>
@@ -222,7 +221,6 @@ export default function ProductosPage() {
               <ProductsGrid
                 productCat={category.productCat}
                 columns={category.id === "polarizado-vehicular" ? 3 : 4}
-                categoryId={category.id}
               />
             </div>
           </section>
