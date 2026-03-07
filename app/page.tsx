@@ -13,14 +13,16 @@ const topCards: PremiumCard[] = [
     description:
       "Láminas de seguridad de alta resistencia para proteger el vehículo de tu cliente con un producto premium.",
     icon: "shield",
-    href: "/productos#seguridad",
+    href: "/productos#seguridad-vehicular",
+    bg: "/autos/1233.jpg",
   },
   {
     title: "Polarizados",
     description:
       "Control solar, rechazo UV y reducción térmica con opciones por nivel de visibilidad y uso.",
     icon: "car",
-    href: "/productos#polarizados",
+    href: "/productos#polarizado-vehicular",
+    bg: "/autos/5082.jpg",
   },
   {
     title: "PPF",
@@ -28,12 +30,14 @@ const topCards: PremiumCard[] = [
       "Protección transparente de pintura con tecnología avanzada contra rayos UV y daños externos.",
     icon: "zap",
     href: "/productos#ppf",
+    bg: "/ppf.jpg",
   },
   {
     title: "Arquitectura",
     description: "Seguridad y control solar para arquitectura de alta calidad.",
     icon: "building2",
     href: "/productos#arquitectura",
+    bg: "https://backend.drpolarizados.com/wp-content/uploads/2026/03/9019.jpg",
   },
 ];
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Building2, Car, ChevronRight, Shield, Zap } from "lucide-react";
+import { Building2, Car, Shield, Zap } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,6 +12,7 @@ export type PremiumCard = {
   highlight?: boolean;
   icon?: PremiumCardIcon;
   href?: string;
+  bg?: string;
 };
 
 const iconMap = {
@@ -46,6 +47,58 @@ type PremiumProductsSectionProps = {
   title?: string;
   cards?: PremiumCard[];
 };
+
+function CardContent({
+  card,
+  size = 22,
+}: {
+  card: PremiumCard;
+  size?: number;
+}) {
+  const Icon = card.icon ? iconMap[card.icon] : null;
+  return (
+    <>
+      <div className="premium-card-header">
+        {Icon && (
+          <span className="premium-card-icon" aria-hidden>
+            <Icon size={size} />
+          </span>
+        )}
+        <h3>{card.title}</h3>
+      </div>
+      <p>{card.description}</p>
+    </>
+  );
+}
+
+function CardItem({
+  card,
+  extraClass = "",
+  size,
+}: {
+  card: PremiumCard;
+  extraClass?: string;
+  size?: number;
+}) {
+  const className = `card premium-card-item${card.highlight ? " highlight" : ""}${extraClass ? ` ${extraClass}` : ""}`;
+  const style = card.bg
+    ? ({ "--card-bg-img": `url("${card.bg}")` } as React.CSSProperties)
+    : undefined;
+
+  if (card.href) {
+    return (
+      <Link href={card.href} className={className} style={style}>
+        <CardContent card={card} size={size} />
+      </Link>
+    );
+  }
+
+  return (
+    <article className={className} style={style}>
+      <CardContent card={card} size={size} />
+    </article>
+  );
+}
 
 export default function PremiumProductsSection({
   title = "Productos",
@@ -100,58 +153,21 @@ export default function PremiumProductsSection({
         <h2 className="premium-title">{title}</h2>
 
         <div className="premium-grid">
-          {cards.map((card) => {
-            const Icon = card.icon ? iconMap[card.icon] : null;
-
-            return (
-              <article
-                className={`card premium-card-item${card.highlight ? " highlight" : ""}`}
-                key={card.title}
-              >
-                {Icon ? (
-                  <span className="premium-card-icon" aria-hidden>
-                    <Icon size={22} />
-                  </span>
-                ) : null}
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
-                {card.href && (
-                  <Link href={card.href} className="premium-card-link">
-                    <ChevronRight size={16} />
-                    Ver
-                  </Link>
-                )}
-              </article>
-            );
-          })}
+          {cards.map((card) => (
+            <CardItem key={card.title} card={card} size={22} />
+          ))}
         </div>
 
         <section className="premium-carousel-shell" aria-label="Productos">
           <div className="premium-carousel-track">
-            {loopCards.map((card, idx) => {
-              const Icon = card.icon ? iconMap[card.icon] : null;
-
-              return (
-                <article
-                  className={`card premium-card premium-card-item${card.highlight ? " highlight" : ""}`}
-                  key={`${card.title}-${idx}`}
-                >
-                  {Icon ? (
-                    <span className="premium-card-icon" aria-hidden>
-                      <Icon size={20} />
-                    </span>
-                  ) : null}
-                  <h3>{card.title}</h3>
-                  <p>{card.description}</p>
-                  {card.href && (
-                    <Link href={card.href} className="premium-card-link">
-                      <ChevronRight size={16} />
-                      Ver
-                    </Link>
-                  )}
-                </article>
-              );
-            })}
+            {loopCards.map((card, idx) => (
+              <CardItem
+                key={`${card.title}-${idx}`}
+                card={card}
+                extraClass="premium-card"
+                size={20}
+              />
+            ))}
           </div>
         </section>
       </div>

@@ -1275,7 +1275,11 @@ p {
 .premium-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
+}
+
+.premium-grid .premium-card-item {
+  padding: 1.5rem;
 }
 
 .premium-carousel-shell {
@@ -1295,6 +1299,54 @@ p {
 .premium-card-item {
   opacity: 0;
   transform: translateY(14px) scale(0.985);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  transition:
+    border-color 280ms ease,
+    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.premium-card-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.84), rgba(0, 0, 0, 0.84)),
+    var(--card-bg-img, none);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 350ms ease;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.premium-card-item > * {
+  position: relative;
+  z-index: 1;
+}
+
+.premium-card-item h3,
+.premium-card-item p {
+  transition: color 300ms ease;
+}
+
+.premium-card-item:hover {
+  border-color: var(--accent);
+  transform: scale(1.03);
+}
+
+.premium-card-item:hover::before {
+  opacity: 1;
+}
+
+.premium-card-item:hover h3,
+.premium-card-item:hover p {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.premium-card-item:hover .premium-card-icon {
+  color: var(--accent);
 }
 
 .premium-products-section.premium-products--visible .premium-card-item {
@@ -1475,34 +1527,23 @@ p {
   }
 }
 
+.premium-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.75rem;
+}
+
+.premium-card-header h3 {
+  margin: 0;
+  font-weight: 700;
+}
+
 .premium-card-icon {
   color: var(--accent);
   display: inline-flex;
-  margin-bottom: 0.55rem;
-}
-
-.premium-card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: auto;
-  padding: 0.6rem 1rem;
-  background: var(--accent);
-  color: #111111;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition:
-    background-color 200ms ease,
-    transform 200ms ease;
-  text-decoration: none;
-}
-
-.premium-card-link:hover {
-  background: var(--accent-strong);
-  transform: translateX(2px);
+  flex-shrink: 0;
+  transition: color 300ms ease;
 }
 
 .back-to-categories-btn {

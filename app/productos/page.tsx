@@ -16,7 +16,7 @@ const productCategories = [
       "Láminas de control solar diseñadas para vehículos, ofreciendo privacidad, protección UV y reducción de calor.",
     icon: Car,
     id: "polarizado-vehicular",
-    bg: "/autos/15632.jpg",
+    bg: "/autos/5082.jpg",
     kicker: "Control Solar Automotriz",
     mensaje:
       "Hola, me interesa obtener información sobre Polarizado Vehicular.",
@@ -49,7 +49,7 @@ const productCategories = [
       "Películas especializadas para edificios y espacios comerciales con control térmico y estético optimizado.",
     icon: Building2,
     id: "arquitectura",
-    bg: "/autos/1028.jpg",
+    bg: "https://backend.drpolarizados.com/wp-content/uploads/2026/03/9019.jpg",
     kicker: "Control térmico y estético para edificios",
     mensaje:
       "Hola, me interesa obtener información sobre láminas de Arquitectura.",
