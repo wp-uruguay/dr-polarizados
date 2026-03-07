@@ -6,10 +6,7 @@ import {
   Linkedin,
   Menu,
   MessageCircle,
-  Package,
-  ShoppingCart,
   UserRound,
-  Users,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -53,27 +50,6 @@ export default function HeaderTools() {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isLoginOpen, isMobileMenuOpen]);
-
-  const productItems = [
-    {
-      href: "/productos",
-      title: "Ver Catálogo",
-      description: "Explorar todos nuestros productos",
-      icon: ShoppingCart,
-    },
-    {
-      href: "/mayoristas",
-      title: "Para Mayoristas",
-      description: "Soluciones para distribuidores y revendedores",
-      icon: Users,
-    },
-    {
-      href: "/marca-blanca",
-      title: "Marca Blanca",
-      description: "Personalizamos productos con tu marca",
-      icon: Package,
-    },
-  ];
 
   const whatsappHref = useMemo(() => {
     const message = mobileMenuMessage.trim();
@@ -192,27 +168,18 @@ export default function HeaderTools() {
           >
             Home
           </Link>
-
-          <div className="mobile-accordion-item">
-            <span className="mobile-accordion-label">Productos</span>
-            <div className="mobile-accordion-content">
-              {productItems.map((item) => {
-                const IconComponent = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="mobile-accordion-link"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <IconComponent size={16} aria-hidden />
-                    <span>{item.title}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
+          <Link href="/productos" onClick={() => setIsMobileMenuOpen(false)}>
+            Productos
+          </Link>
+          <Link href="/mayoristas" onClick={() => setIsMobileMenuOpen(false)}>
+            Mayoristas
+          </Link>
+          <Link href="/marca-blanca" onClick={() => setIsMobileMenuOpen(false)}>
+            Marca Blanca
+          </Link>
+          <Link href="/software" onClick={() => setIsMobileMenuOpen(false)}>
+            Software
+          </Link>
           <Link href="/contacto" onClick={() => setIsMobileMenuOpen(false)}>
             Contacto
           </Link>
