@@ -4110,7 +4110,6 @@ button:disabled,
     min-height: 280px;
     height: auto;
     padding: 4rem 0;
-    background-attachment: scroll;
   }
 
   .cat-hero h1 {
