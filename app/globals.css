@@ -2083,6 +2083,9 @@ button:disabled,
   .hero-arrow {
     min-height: 38px;
     min-width: 38px;
+    top: auto;
+    bottom: 1.25rem;
+    transform: none;
   }
 
   .hero-arrow-left {
