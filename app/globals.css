@@ -173,7 +173,7 @@ body.drawer-open .app-frame {
   border: 1px solid var(--line);
   border-radius: 0.75rem;
   margin-top: 0.25rem;
-  min-width: 400px;
+  min-width: min(88vw, 400px);
   z-index: 100;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   padding: 1rem;
@@ -1873,6 +1873,13 @@ button:disabled,
   border-radius: 18px;
 }
 
+@media (max-width: 480px) {
+  .autos-carousel {
+    height: 180px;
+    min-height: 180px;
+  }
+}
+
 .autos-carousel-fullwidth {
   margin-bottom: 0;
   padding-bottom: 0;
@@ -1906,6 +1913,10 @@ button:disabled,
 }
 
 @media (max-width: 900px) {
+  .container {
+    width: 88%;
+  }
+
   .grid-3 {
     grid-template-columns: 1fr 1fr;
   }
@@ -3161,7 +3172,7 @@ button:disabled,
 }
 
 .product-hero-info h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4.5vw, 2.5rem);
   font-weight: 700;
   line-height: 1.15;
   color: #ffffff;
@@ -3291,10 +3302,6 @@ button:disabled,
   .product-hero-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .product-hero-info h1 {
-    font-size: 2rem;
   }
 
   .product-hero-actions {
@@ -3455,7 +3462,7 @@ button:disabled,
 }
 
 .advisory-text h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
   line-height: 1.2;
   margin-bottom: 1.5rem;
   color: #ffffff;
@@ -3527,10 +3534,6 @@ button:disabled,
   .advisory-content {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .advisory-text h1 {
-    font-size: 2rem;
   }
 
   .advisory-section {

@@ -125,6 +125,7 @@ export default function ProductosPage() {
                     style={{
                       display: "flex",
                       alignItems: "center",
+                      flexWrap: "wrap",
                       gap: "1rem",
                       marginBottom: "1.5rem",
                     }}
