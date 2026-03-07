@@ -1,7 +1,7 @@
 "use client";
 
+import { Check, Facebook, Link2, Linkedin } from "lucide-react";
 import { useState } from "react";
-import { Facebook, Linkedin, Link2, Check } from "lucide-react";
 import XIcon from "../../components/XIcon";
 
 interface ProductFooterShareProps {
@@ -9,7 +9,10 @@ interface ProductFooterShareProps {
   title: string;
 }
 
-export function ProductFooterShare({ productId, title }: ProductFooterShareProps) {
+export function ProductFooterShare({
+  productId,
+  title,
+}: ProductFooterShareProps) {
   const [copied, setCopied] = useState(false);
 
   const productUrl = `https://drpolarizados.com/productos/${productId}`;

@@ -1,6 +1,6 @@
+import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 import ShareTab from "./share-tab";
 
 interface FeaturedImage {
@@ -32,7 +32,7 @@ async function getBlogPost(slug: string) {
   try {
     const response = await fetch(
       `https://backend.drpolarizados.com/wp-json/wp/v2/posts?slug=${slug}&_embed=wp:featuredmedia`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 } },
     );
 
     if (!response.ok) {
@@ -56,7 +56,7 @@ async function getBlogPosts() {
   try {
     const response = await fetch(
       "https://backend.drpolarizados.com/wp-json/wp/v2/posts?per_page=100",
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 } },
     );
 
     if (!response.ok) {
@@ -119,7 +119,9 @@ export async function generateMetadata({
 
   return {
     title: post.title.rendered,
-    description: post.excerpt.rendered.replace(/<[^>]*>/g, "").substring(0, 160),
+    description: post.excerpt.rendered
+      .replace(/<[^>]*>/g, "")
+      .substring(0, 160),
   };
 }
 
@@ -135,9 +137,17 @@ export default async function BlogPostPage({
     return (
       <section className="section">
         <div className="container">
-          <div style={{ textAlign: "center", paddingTop: "2rem", paddingBottom: "2rem" }}>
+          <div
+            style={{
+              textAlign: "center",
+              paddingTop: "2rem",
+              paddingBottom: "2rem",
+            }}
+          >
             <h1>Post no encontrado</h1>
-            <p>Lo sentimos, el post que buscas no existe o ha sido eliminado.</p>
+            <p>
+              Lo sentimos, el post que buscas no existe o ha sido eliminado.
+            </p>
             <Link href="/blog" style={{ color: "var(--accent)" }}>
               ← Volver al blog
             </Link>
@@ -210,16 +220,28 @@ export default async function BlogPostPage({
           <span>{readingTime} min de lectura</span>
         </div>
         <div style={{ opacity: 0.6 }}>•</div>
-        <nav style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.85rem" }}>
+        <nav
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            fontSize: "0.85rem",
+          }}
+        >
           <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>
             Inicio
           </Link>
           <ChevronRight size={14} />
-          <Link href="/blog" style={{ color: "inherit", textDecoration: "none" }}>
+          <Link
+            href="/blog"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
             Blog
           </Link>
           <ChevronRight size={14} />
-          <span style={{ opacity: 0.7 }}>{post.title.rendered.substring(0, 30)}...</span>
+          <span style={{ opacity: 0.7 }}>
+            {post.title.rendered.substring(0, 30)}...
+          </span>
         </nav>
       </div>
 

@@ -1,11 +1,11 @@
-import Link from "next/link";
 import { CircleCheck } from "lucide-react";
-import HeroSlider from "./hero-slider";
-import PremiumProductsSection from "./premium-products-section";
-import HorizontalScrollSection from "./horizontal-scroll-section";
-import FinalContactSection from "./final-contact-section";
+import Link from "next/link";
 import AutosCarousel from "./components/AutosCarousel";
+import FinalContactSection from "./final-contact-section";
+import HeroSlider from "./hero-slider";
+import HorizontalScrollSection from "./horizontal-scroll-section";
 import type { PremiumCard } from "./premium-products-section";
+import PremiumProductsSection from "./premium-products-section";
 
 const topCards: PremiumCard[] = [
   {
@@ -31,8 +31,7 @@ const topCards: PremiumCard[] = [
   },
   {
     title: "Arquitectura",
-    description:
-      "Seguridad y control solar para arquitectura de alta calidad.",
+    description: "Seguridad y control solar para arquitectura de alta calidad.",
     icon: "building2",
     href: "/productos#arquitectura",
   },
@@ -46,7 +45,13 @@ export default function Home() {
       <PremiumProductsSection cards={topCards} />
 
       <section className="section direct-solutions">
-        <video autoPlay className="direct-solutions-video" loop muted playsInline aria-hidden="true">
+        <video
+          autoPlay
+          className="direct-solutions-video"
+          loop
+          muted
+          playsInline
+        >
           <source src="/videos/tercera.mp4" type="video/mp4" />
         </video>
 
@@ -57,9 +62,18 @@ export default function Home() {
             <h2>Soluciones Directas</h2>
             <h3>Si instalás, sabés esto:</h3>
             <ul className="check-list">
-              <li><CircleCheck size={20} strokeWidth={2.2} aria-hidden /> Querés mejores márgenes y un stock que no te dé dolores de cabeza.</li>
-              <li><CircleCheck size={20} strokeWidth={2.2} aria-hidden /> Necesitás saber exactamente cuánto ganás por metro y por rollo.</li>
-              <li><CircleCheck size={20} strokeWidth={2.2} aria-hidden /> Y merecés un proveedor que sea un verdadero aliado de tu negocio.</li>
+              <li>
+                <CircleCheck size={20} strokeWidth={2.2} aria-hidden /> Querés
+                mejores márgenes y un stock que no te dé dolores de cabeza.
+              </li>
+              <li>
+                <CircleCheck size={20} strokeWidth={2.2} aria-hidden />{" "}
+                Necesitás saber exactamente cuánto ganás por metro y por rollo.
+              </li>
+              <li>
+                <CircleCheck size={20} strokeWidth={2.2} aria-hidden /> Y
+                merecés un proveedor que sea un verdadero aliado de tu negocio.
+              </li>
             </ul>
             <p>En DP trabajamos para que todo eso sea posible.</p>
 
@@ -76,7 +90,10 @@ export default function Home() {
 
       <FinalContactSection />
 
-      <div className="autos-carousel-fullwidth" style={{marginBottom: 0, paddingBottom: 0}}>
+      <div
+        className="autos-carousel-fullwidth"
+        style={{ marginBottom: 0, paddingBottom: 0 }}
+      >
         <AutosCarousel />
       </div>
     </div>

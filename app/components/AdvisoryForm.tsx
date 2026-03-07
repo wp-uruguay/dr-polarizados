@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { CircleCheck, CircleX, Loader2 } from "lucide-react";
+import { useState } from "react";
 
 export function AdvisoryForm() {
   const [formData, setFormData] = useState({
@@ -10,7 +10,9 @@ export function AdvisoryForm() {
     whatsapp: "",
     email: "",
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -61,7 +63,11 @@ export function AdvisoryForm() {
         </div>
         <h3>¡Consulta enviada!</h3>
         <p>Un asesor se comunicará con vos a la brevedad.</p>
-        <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+        <button
+          type="button"
+          className="form-confirmation-btn"
+          onClick={() => setStatus("idle")}
+        >
           Enviar otra consulta
         </button>
       </div>
@@ -77,12 +83,20 @@ export function AdvisoryForm() {
         <h3>Error al enviar</h3>
         <p>
           Intentá de nuevo en unos momentos o contactanos por{" "}
-          <a href="https://wa.me/5491168477185" target="_blank" rel="noreferrer">
+          <a
+            href="https://wa.me/5491168477185"
+            target="_blank"
+            rel="noreferrer"
+          >
             WhatsApp
           </a>
           .
         </p>
-        <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+        <button
+          type="button"
+          className="form-confirmation-btn"
+          onClick={() => setStatus("idle")}
+        >
           Volver al formulario
         </button>
       </div>
@@ -90,9 +104,16 @@ export function AdvisoryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="advisory-form-content" aria-busy={status === "sending"}>
+    <form
+      onSubmit={handleSubmit}
+      className="advisory-form-content"
+      aria-busy={status === "sending"}
+    >
       <label htmlFor="advisory-nombre">
-        Nombre <span className="required-star" aria-hidden="true">*</span>
+        Nombre{" "}
+        <span className="required-star" aria-hidden="true">
+          *
+        </span>
         <input
           id="advisory-nombre"
           type="text"
@@ -105,7 +126,10 @@ export function AdvisoryForm() {
         />
       </label>
       <label htmlFor="advisory-empresa">
-        Empresa <span className="required-star" aria-hidden="true">*</span>
+        Empresa{" "}
+        <span className="required-star" aria-hidden="true">
+          *
+        </span>
         <input
           id="advisory-empresa"
           type="text"
@@ -118,7 +142,10 @@ export function AdvisoryForm() {
         />
       </label>
       <label htmlFor="advisory-whatsapp">
-        WhatsApp <span className="required-star" aria-hidden="true">*</span>
+        WhatsApp{" "}
+        <span className="required-star" aria-hidden="true">
+          *
+        </span>
         <input
           id="advisory-whatsapp"
           type="tel"
@@ -131,7 +158,10 @@ export function AdvisoryForm() {
         />
       </label>
       <label htmlFor="advisory-email">
-        Email <span className="required-star" aria-hidden="true">*</span>
+        Email{" "}
+        <span className="required-star" aria-hidden="true">
+          *
+        </span>
         <input
           id="advisory-email"
           type="email"

@@ -1,8 +1,15 @@
 "use client";
 
-import Link from "next/link";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 import XIcon from "./components/XIcon";
 
 export default function SiteFooter() {
@@ -22,7 +29,8 @@ export default function SiteFooter() {
               />
             </Link>
             <p className="footer-tagline">
-                Distribucion profesional de laminas de control solar de autos y arquitectura para toda la Argentina.
+              Distribucion profesional de laminas de control solar de autos y
+              arquitectura para toda la Argentina.
             </p>
           </div>
 
@@ -87,7 +95,9 @@ export default function SiteFooter() {
               </div>
               <div className="footer-contact-item">
                 <Mail size={16} />
-                <a href="mailto:ventas@drpolarizados.com">ventas@drpolarizados.com</a>
+                <a href="mailto:ventas@drpolarizados.com">
+                  ventas@drpolarizados.com
+                </a>
               </div>
               <div className="footer-contact-item">
                 <MapPin size={16} />
@@ -99,7 +109,10 @@ export default function SiteFooter() {
 
         {/* Bottom Bar */}
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Dr Polarizados. Todos los derechos reservados.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Dr Polarizados. Todos los derechos
+            reservados.
+          </p>
           <div className="footer-bottom-links">
             <Link href="/politica-privacidad">Política de Privacidad</Link>
             <Link href="/terminos-servicio">Términos de Servicio</Link>
@@ -116,9 +129,11 @@ export default function SiteFooter() {
             rel="noopener noreferrer"
             className="footer-credit-link"
           >
-            <img
+            <Image
               src="http://colonia.cloud/wp-content/uploads/2025/12/Logo.png"
               alt="Colonia Cloud"
+              width={80}
+              height={24}
               className="footer-credit-logo"
             />
           </a>

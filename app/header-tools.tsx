@@ -1,11 +1,21 @@
 "use client";
 
-import { UserRound, X, Menu, ShoppingCart, Users, Package } from "lucide-react";
-import { useState, useMemo, useEffect, useRef } from "react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Menu,
+  MessageCircle,
+  Package,
+  ShoppingCart,
+  UserRound,
+  Users,
+  X,
+} from "lucide-react";
 import Link from "next/link";
-import ThemeToggle from "./theme-toggle";
-import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import XIcon from "./components/XIcon";
+import ThemeToggle from "./theme-toggle";
 
 const WHATSAPP_PHONE = "5491168477185";
 
@@ -98,7 +108,12 @@ export default function HeaderTools() {
       </div>
 
       {isLoginOpen && (
-        <div className="login-modal-root" role="dialog" aria-modal="true" aria-label="Login">
+        <div
+          className="login-modal-root"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Login"
+        >
           <button
             type="button"
             aria-label="Cerrar modal de login"
@@ -117,7 +132,10 @@ export default function HeaderTools() {
                 <X size={15} aria-hidden />
               </button>
             </div>
-            <form className="login-form" onSubmit={(event) => event.preventDefault()}>
+            <form
+              className="login-form"
+              onSubmit={(event) => event.preventDefault()}
+            >
               <label htmlFor="login-email">
                 Email
                 <input
@@ -203,20 +221,40 @@ export default function HeaderTools() {
           </Link>
         </nav>
 
-        <div className="mobile-drawer-social" aria-label="Redes sociales">
-          <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+        <nav className="mobile-drawer-social" aria-label="Redes sociales">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Facebook"
+          >
             <Facebook size={16} aria-hidden />
           </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+          >
             <Instagram size={16} aria-hidden />
           </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
             <Linkedin size={16} aria-hidden />
           </a>
-          <a href="https://www.x.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
+          <a
+            href="https://www.x.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="X (Twitter)"
+          >
             <XIcon size={16} />
           </a>
-        </div>
+        </nav>
 
         <div className="mobile-drawer-divider" aria-hidden />
 

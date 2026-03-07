@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface Product {
   id: number;
@@ -25,7 +25,10 @@ interface RelatedProductsProps {
   currentProductId: number;
 }
 
-export function RelatedProducts({ productCat, currentProductId }: RelatedProductsProps) {
+export function RelatedProducts({
+  productCat,
+  currentProductId,
+}: RelatedProductsProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -36,7 +39,7 @@ export function RelatedProducts({ productCat, currentProductId }: RelatedProduct
     const fetchRelated = async () => {
       try {
         const response = await fetch(
-          `https://backend.drpolarizados.com/wp-json/wp/v2/product?product_cat=${productCat}&_embed&per_page=12`
+          `https://backend.drpolarizados.com/wp-json/wp/v2/product?product_cat=${productCat}&_embed&per_page=12`,
         );
         if (!response.ok) throw new Error("Error fetching");
         const data: Product[] = await response.json();
@@ -54,12 +57,12 @@ export function RelatedProducts({ productCat, currentProductId }: RelatedProduct
     fetchRelated();
   }, [productCat, currentProductId]);
 
-  const updateScrollButtons = () => {
+  const updateScrollButtons = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 10);
     setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  };
+  }, []);
 
   useEffect(() => {
     const el = trackRef.current;
@@ -71,7 +74,7 @@ export function RelatedProducts({ productCat, currentProductId }: RelatedProduct
       el.removeEventListener("scroll", updateScrollButtons);
       window.removeEventListener("resize", updateScrollButtons);
     };
-  }, [products]);
+  }, [updateScrollButtons]);
 
   const scroll = (direction: "left" | "right") => {
     const el = trackRef.current;
@@ -88,8 +91,8 @@ export function RelatedProducts({ productCat, currentProductId }: RelatedProduct
     return (
       <div className="related-carousel-wrapper">
         <div className="related-carousel-track">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="related-card related-card-skeleton">
+          {["sk1", "sk2", "sk3", "sk4"].map((id) => (
+            <div key={id} className="related-card related-card-skeleton">
               <div className="related-card-image skeleton-pulse" />
               <div className="skeleton-text skeleton-pulse" />
             </div>

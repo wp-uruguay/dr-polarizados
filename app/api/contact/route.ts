@@ -1,5 +1,5 @@
-import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
 const TO_EMAIL = "ventas@drpolarizados.com"; // destino
 
@@ -25,7 +25,7 @@ function buildHtmlEmail(origin: string, fields: Record<string, string>) {
       <tr>
         <td style="padding:8px 12px;font-weight:600;color:#333;border-bottom:1px solid #eee;white-space:nowrap;vertical-align:top">${key}</td>
         <td style="padding:8px 12px;color:#555;border-bottom:1px solid #eee">${value || "—"}</td>
-      </tr>`
+      </tr>`,
     )
     .join("");
 
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     console.error("RESEND_API_KEY no está configurada.");
     return NextResponse.json(
       { error: "El servicio de email no está configurado." },
-      { status: 503 }
+      { status: 503 },
     );
   }
 
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
     if (!origin || !fields || Object.keys(fields).length === 0) {
       return NextResponse.json(
         { error: "Faltan campos obligatorios." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -81,7 +81,7 @@ export async function POST(request: Request) {
       console.error("Resend error:", error);
       return NextResponse.json(
         { error: "Error al enviar el email." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -90,7 +90,7 @@ export async function POST(request: Request) {
     console.error("API contact error:", err);
     return NextResponse.json(
       { error: "Error interno del servidor." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

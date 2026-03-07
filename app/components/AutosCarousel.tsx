@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const images = [
   "/autos/1233.jpg",
@@ -83,18 +83,23 @@ export default function AutosCarousel() {
     }, BOOST_MS);
   };
 
-  const allImages = [...orderedImages, ...orderedImages];
+  const allImages = [
+    ...orderedImages.map((src, i) => ({ src, key: `a${i}` })),
+    ...orderedImages.map((src, i) => ({ src, key: `b${i}` })),
+  ];
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: pausa animación en hover, no es interacción primaria
     <div
       className="autos-carousel"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className="autos-carousel-track" ref={trackRef}>
-        {allImages.map((src, i) => (
+        {allImages.map(({ src, key }) => (
+          // biome-ignore lint/performance/noImgElement: carrusel infinito requiere <img> nativo para animación con transform
           <img
-            key={`${src}-${i}`}
+            key={key}
             src={src}
             alt=""
             className="autos-carousel-img"

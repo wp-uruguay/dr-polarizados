@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ async function getBlogPosts() {
   try {
     const response = await fetch(
       "https://backend.drpolarizados.com/wp-json/wp/v2/posts?_embed=wp:featuredmedia",
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 } },
     );
 
     if (!response.ok) {
@@ -90,20 +91,31 @@ export default async function BlogPage() {
                   key={post.id}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <article className="card blog-card" style={{ cursor: "pointer", height: "100%", overflow: "hidden" }}>
+                  <article
+                    className="card blog-card"
+                    style={{
+                      cursor: "pointer",
+                      height: "100%",
+                      overflow: "hidden",
+                    }}
+                  >
                     {featuredImage && (
                       <div className="blog-card-image">
-                        <img 
-                          src={featuredImage} 
+                        <Image
+                          src={featuredImage}
                           alt={stripHtml(post.title.rendered)}
-                          loading="lazy"
+                          width={600}
+                          height={400}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
                         />
                       </div>
                     )}
                     <div className="blog-card-content">
-                      <p className="blog-card-date">
-                        {formatDate(post.date)}
-                      </p>
+                      <p className="blog-card-date">{formatDate(post.date)}</p>
                       <h3 className="blog-card-title">
                         {stripHtml(post.title.rendered)}
                       </h3>
@@ -114,7 +126,9 @@ export default async function BlogPage() {
               );
             })
           ) : (
-            <p style={{ gridColumn: "1 / -1" }}>No hay publicaciones disponibles</p>
+            <p style={{ gridColumn: "1 / -1" }}>
+              No hay publicaciones disponibles
+            </p>
           )}
         </div>
       </div>

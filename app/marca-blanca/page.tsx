@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { CircleCheck, CircleX } from "lucide-react";
+import { useState } from "react";
 
 export default function MarcaBlancaPage() {
   const [formData, setFormData] = useState({
@@ -16,12 +16,14 @@ export default function MarcaBlancaPage() {
     sobre_marca: "",
   });
 
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
 
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -58,8 +60,15 @@ export default function MarcaBlancaPage() {
       if (res.ok) {
         setStatus("sent");
         setFormData({
-          nombre_apellido: "", empresa: "", ciudad: "", whatsapp: "",
-          email: "", nombre_marca: "", tienes_logo: "", logo: null, sobre_marca: "",
+          nombre_apellido: "",
+          empresa: "",
+          ciudad: "",
+          whatsapp: "",
+          email: "",
+          nombre_marca: "",
+          tienes_logo: "",
+          logo: null,
+          sobre_marca: "",
         });
       } else {
         setStatus("error");
@@ -77,8 +86,9 @@ export default function MarcaBlancaPage() {
             <span className="kicker">Programa de negocios</span>
             <h1>Marca Blanca</h1>
             <p className="lead">
-              Conviértete en distribuidor autorizado de Dr Polarizados. Ofrece nuestros
-              productos bajo tu propia marca y genera ingresos adicionales.
+              Conviértete en distribuidor autorizado de Dr Polarizados. Ofrece
+              nuestros productos bajo tu propia marca y genera ingresos
+              adicionales.
             </p>
           </article>
           <article className="card">
@@ -87,8 +97,15 @@ export default function MarcaBlancaPage() {
                 <CircleCheck size={28} />
               </div>
               <h3>¡Solicitud enviada!</h3>
-              <p>Recibimos tu propuesta de Marca Blanca. Nos pondremos en contacto para conocer más sobre tu proyecto.</p>
-              <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+              <p>
+                Recibimos tu propuesta de Marca Blanca. Nos pondremos en
+                contacto para conocer más sobre tu proyecto.
+              </p>
+              <button
+                type="button"
+                className="form-confirmation-btn"
+                onClick={() => setStatus("idle")}
+              >
                 Enviar otra solicitud
               </button>
             </div>
@@ -116,7 +133,11 @@ export default function MarcaBlancaPage() {
               </div>
               <h3>Error al enviar</h3>
               <p>Ocurrió un problema. Por favor, intentá de nuevo.</p>
-              <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+              <button
+                type="button"
+                className="form-confirmation-btn"
+                onClick={() => setStatus("idle")}
+              >
                 Volver al formulario
               </button>
             </div>
@@ -133,14 +154,21 @@ export default function MarcaBlancaPage() {
           <span className="kicker">Programa de negocios</span>
           <h1>Marca Blanca</h1>
           <p className="lead">
-            Conviértete en distribuidor autorizado de Dr Polarizados. Ofrece nuestros
-            productos bajo tu propia marca y genera ingresos adicionales. Completa el
-            formulario a continuación y nos pondremos en contacto para conocer tu
-            proyecto.
+            Conviértete en distribuidor autorizado de Dr Polarizados. Ofrece
+            nuestros productos bajo tu propia marca y genera ingresos
+            adicionales. Completa el formulario a continuación y nos pondremos
+            en contacto para conocer tu proyecto.
           </p>
-          
+
           <div style={{ marginTop: "2rem" }}>
-            <h3 style={{ fontSize: "1.125rem", fontWeight: 600, marginBottom: "1rem", color: "var(--ink)" }}>
+            <h3
+              style={{
+                fontSize: "1.125rem",
+                fontWeight: 600,
+                marginBottom: "1rem",
+                color: "var(--ink)",
+              }}
+            >
               ¿Por qué unirse?
             </h3>
             <ul style={{ lineHeight: 1.8, color: "var(--muted)" }}>
@@ -222,8 +250,21 @@ export default function MarcaBlancaPage() {
             </label>
 
             {/* Datos de marca */}
-            <div style={{ borderTop: "1px solid var(--line)", paddingTop: "1.5rem", marginTop: "1.5rem" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "1rem", color: "var(--ink)" }}>
+            <div
+              style={{
+                borderTop: "1px solid var(--line)",
+                paddingTop: "1.5rem",
+                marginTop: "1.5rem",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 600,
+                  marginBottom: "1rem",
+                  color: "var(--ink)",
+                }}
+              >
                 Datos de tu marca
               </h3>
             </div>
@@ -282,7 +323,11 @@ export default function MarcaBlancaPage() {
               />
             </label>
 
-            <button type="submit" className="contact-button" disabled={status === "sending"}>
+            <button
+              type="submit"
+              className="contact-button"
+              disabled={status === "sending"}
+            >
               {status === "sending" ? "Enviando..." : "Enviar solicitud"}
             </button>
           </form>

@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { ChevronLeft, ChevronRight, Monitor, Shield } from "lucide-react";
-import { useEffect, useState } from "react";
 import type { LucideIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, Monitor, Shield } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 type Slide = {
   kicker: string;
@@ -68,7 +68,7 @@ export default function HeroSlider() {
 
     const progressInterval = window.setInterval(() => {
       setProgress((prev) => {
-        const next = prev + (100 / (SLIDE_DURATION / 33)); // ~33ms updates
+        const next = prev + 100 / (SLIDE_DURATION / 33); // ~33ms updates
         return next >= 100 ? 100 : next;
       });
     }, 33);
@@ -94,8 +94,9 @@ export default function HeroSlider() {
 
   return (
     <section className="hero">
-      <div
+      <section
         className="hero-slider"
+        aria-label="Carrusel de imágenes"
         onMouseEnter={() => setAutoPlay(false)}
         onMouseLeave={() => setAutoPlay(true)}
       >
@@ -120,8 +121,6 @@ export default function HeroSlider() {
           <div
             className="hero-track"
             style={{ transform: `translateX(-${index * 100}%)` }}
-            role="region"
-            aria-label="Presentacion de Dr Polarizados"
           >
             {slides.map((slide, slideIndex) => (
               <article
@@ -152,10 +151,10 @@ export default function HeroSlider() {
             ))}
           </div>
         </div>
-      </div>
-      
+      </section>
+
       <div className="hero-progress-bar">
-        <div 
+        <div
           className="hero-progress-fill"
           style={{ width: `${progress}%` }}
           aria-hidden="true"

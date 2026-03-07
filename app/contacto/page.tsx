@@ -1,8 +1,15 @@
+import {
+  Clock,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  Phone,
+} from "lucide-react";
 import type { Metadata } from "next";
-import { Facebook, Instagram, Linkedin, Mail, Phone, Clock } from "lucide-react";
-import XIcon from "../components/XIcon";
-import { ContactoForm } from "../components/ContactoForm";
 import AutosCarousel from "../components/AutosCarousel";
+import { ContactoForm } from "../components/ContactoForm";
+import XIcon from "../components/XIcon";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -22,7 +29,7 @@ export default function ContactoPage() {
               Deja tus datos y el perfil de tu negocio para que nuestro equipo
               comercial se ponga en contacto.
             </p>
-            <div className="contact-social-links" aria-label="Redes sociales">
+            <nav className="contact-social-links" aria-label="Redes sociales">
               <a
                 href="https://www.facebook.com"
                 target="_blank"
@@ -55,7 +62,7 @@ export default function ContactoPage() {
               >
                 <XIcon size={16} />
               </a>
-            </div>
+            </nav>
 
             <div className="contact-info-block">
               <div className="contact-info-copy">

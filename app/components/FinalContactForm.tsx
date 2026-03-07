@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { CircleCheck, CircleX, Loader2 } from "lucide-react";
+import { useState } from "react";
 
 export function FinalContactForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,8 +49,14 @@ export function FinalContactForm() {
           <CircleCheck size={28} />
         </div>
         <h3>¡Gracias por escribirnos!</h3>
-        <p>Tu mensaje fue enviado correctamente. Te responderemos a la brevedad.</p>
-        <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+        <p>
+          Tu mensaje fue enviado correctamente. Te responderemos a la brevedad.
+        </p>
+        <button
+          type="button"
+          className="form-confirmation-btn"
+          onClick={() => setStatus("idle")}
+        >
           Enviar otro mensaje
         </button>
       </div>
@@ -63,10 +71,22 @@ export function FinalContactForm() {
         </div>
         <h3>Error al enviar</h3>
         <p>
-          Ocurrió un problema al procesar tu mensaje. Por favor, intentá de nuevo o contactanos por{" "}
-          <a href="https://wa.me/5491168477185" target="_blank" rel="noreferrer">WhatsApp</a>.
+          Ocurrió un problema al procesar tu mensaje. Por favor, intentá de
+          nuevo o contactanos por{" "}
+          <a
+            href="https://wa.me/5491168477185"
+            target="_blank"
+            rel="noreferrer"
+          >
+            WhatsApp
+          </a>
+          .
         </p>
-        <button type="button" className="form-confirmation-btn" onClick={() => setStatus("idle")}>
+        <button
+          type="button"
+          className="form-confirmation-btn"
+          onClick={() => setStatus("idle")}
+        >
           Volver al formulario
         </button>
       </div>
@@ -74,10 +94,17 @@ export function FinalContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="contact-form" aria-busy={status === "sending"}>
+    <form
+      onSubmit={handleSubmit}
+      className="contact-form"
+      aria-busy={status === "sending"}
+    >
       <div className="form-group">
         <label htmlFor="name">
-          Nombre <span className="required-star" aria-hidden="true">*</span>
+          Nombre{" "}
+          <span className="required-star" aria-hidden="true">
+            *
+          </span>
         </label>
         <input
           type="text"
@@ -91,7 +118,10 @@ export function FinalContactForm() {
 
       <div className="form-group">
         <label htmlFor="email">
-          Email <span className="required-star" aria-hidden="true">*</span>
+          Email{" "}
+          <span className="required-star" aria-hidden="true">
+            *
+          </span>
         </label>
         <input
           type="email"

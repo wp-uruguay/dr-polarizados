@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface ProductDescriptionProps {
   content: string;
@@ -16,7 +16,7 @@ export function ProductDescription({ content }: ProductDescriptionProps) {
       const scrollHeight = contentRef.current.scrollHeight;
       setNeedsExpand(scrollHeight > 320);
     }
-  }, [content]);
+  }, []);
 
   return (
     <div className="product-description-wrapper">
@@ -28,6 +28,7 @@ export function ProductDescription({ content }: ProductDescriptionProps) {
       {needsExpand && !expanded && (
         <div className="product-description-fade">
           <button
+            type="button"
             className="product-description-toggle"
             onClick={() => setExpanded(true)}
           >

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface Product {
   id: number;
@@ -69,7 +69,7 @@ export default function ProductsCarousel() {
         /* Fetch both categories in parallel */
         const urls = ALLOWED_CATS.map(
           (cat) =>
-            `https://backend.drpolarizados.com/wp-json/wp/v2/product?_embed&per_page=20&product_cat=${cat}`
+            `https://backend.drpolarizados.com/wp-json/wp/v2/product?_embed&per_page=20&product_cat=${cat}`,
         );
         const responses = await Promise.all(urls.map((u) => fetch(u)));
         const results = await Promise.all(responses.map((r) => r.json()));
@@ -141,21 +141,20 @@ export default function ProductsCarousel() {
       </div>
 
       <div className="carousel-infinite-wrapper">
-        <div
+        <section
           ref={trackRef}
           className={`carousel-infinite-track${paused ? " paused" : ""}`}
           onMouseEnter={handleEnter}
           onMouseLeave={handleLeave}
           onFocus={handleEnter}
           onBlur={handleLeave}
-          role="region"
           aria-label="Carrusel de productos"
         >
           {/* Render products twice for seamless infinite loop */}
           {[...products, ...products].map((product, i) => (
             <ProductCard key={`${product.id}-${i}`} product={product} />
           ))}
-        </div>
+        </section>
       </div>
     </section>
   );

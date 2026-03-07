@@ -1,7 +1,7 @@
 "use client";
 
+import { Building2, Car, ChevronRight, Shield, Zap } from "lucide-react";
 import Link from "next/link";
-import { Building2, Car, Shield, ChevronRight, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export type PremiumCardIcon = "shield" | "car" | "building2" | "zap";
@@ -126,7 +126,7 @@ export default function PremiumProductsSection({
           })}
         </div>
 
-        <div className="premium-carousel-shell" aria-label="Productos">
+        <section className="premium-carousel-shell" aria-label="Productos">
           <div className="premium-carousel-track">
             {loopCards.map((card, idx) => {
               const Icon = card.icon ? iconMap[card.icon] : null;
@@ -153,7 +153,7 @@ export default function PremiumProductsSection({
               );
             })}
           </div>
-        </div>
+        </section>
       </div>
     </section>
   );

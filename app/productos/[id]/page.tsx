@@ -1,15 +1,19 @@
+import { ArrowLeft, ChevronLeft, Mail, MessageCircle } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, MessageCircle, Mail, ArrowLeft } from "lucide-react";
 import { ProductDescription } from "./ProductDescription";
 import { ProductFooterShare } from "./ProductFooter";
 
+interface WPRendered {
+  rendered: string;
+}
+
 interface Product {
   id: number;
-  title: string;
-  content: string;
-  excerpt: string;
+  title: string | WPRendered;
+  content: string | WPRendered;
+  excerpt: string | WPRendered;
   featured_media?: number;
   product_cat?: number[];
   acf?: {
@@ -30,13 +34,13 @@ async function getProduct(id: string): Promise<Product | null> {
   try {
     const response = await fetch(
       `https://backend.drpolarizados.com/wp-json/wp/v2/product/${id}?_embed`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 } },
     );
-    
+
     if (!response.ok) {
       return null;
     }
-    
+
     return response.json();
   } catch (error) {
     console.error("Error fetching product:", error);
@@ -62,14 +66,14 @@ export async function generateMetadata({
   const title =
     typeof product.title === "string"
       ? product.title
-      : (product.title as any)?.rendered || "Producto";
+      : (product.title as WPRendered).rendered || "Producto";
 
   return {
     title,
     description:
       typeof product.excerpt === "string"
         ? product.excerpt
-        : (product.excerpt as any)?.rendered || "",
+        : (product.excerpt as WPRendered).rendered || "",
   };
 }
 
@@ -90,7 +94,11 @@ export default async function ProductPage({
             <p className="text-gray-400 mb-6">
               El producto que buscan no existe o fue eliminado.
             </p>
-            <Link href="/productos" className="contact-button" style={{display: "inline-block"}}>
+            <Link
+              href="/productos"
+              className="contact-button"
+              style={{ display: "inline-block" }}
+            >
               Volver al catálogo
             </Link>
           </div>
@@ -110,30 +118,36 @@ export default async function ProductPage({
   const title =
     typeof product.title === "string"
       ? product.title
-      : (product.title as any)?.rendered || "Sin título";
+      : (product.title as WPRendered).rendered || "Sin título";
 
   const content =
     typeof product.content === "string"
       ? product.content
-      : (product.content as any)?.rendered || "";
+      : (product.content as WPRendered).rendered || "";
 
-  const precio = product.acf?.precio || "Consultar precio";
+  const _precio = product.acf?.precio || "Consultar precio";
 
-  const whatsappMessage = encodeURIComponent(`Hola, quiero consultar por el precio de ${title}`);
+  const whatsappMessage = encodeURIComponent(
+    `Hola, quiero consultar por el precio de ${title}`,
+  );
   const whatsappUrl = `https://wa.me/5491168477185?text=${whatsappMessage}`;
   const mailSubject = encodeURIComponent(`Consulta por ${title}`);
-  const mailBody = encodeURIComponent(`Hola, quiero consultar por el precio de ${title}`);
+  const mailBody = encodeURIComponent(
+    `Hola, quiero consultar por el precio de ${title}`,
+  );
   const mailUrl = `mailto:ventas@drpolarizados.com?subject=${mailSubject}&body=${mailBody}`;
 
   return (
     <>
       {/* Hero Section */}
-      <section className="product-hero" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('${imageSrc}')` }}>
+      <section
+        className="product-hero"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('${imageSrc}')`,
+        }}
+      >
         <div className="container">
-          <Link
-            href="/productos"
-            className="product-back-link"
-          >
+          <Link href="/productos" className="product-back-link">
             <ChevronLeft size={20} aria-hidden />
             Volver al catálogo
           </Link>
@@ -153,7 +167,9 @@ export default async function ProductPage({
             {/* Info */}
             <div className="product-hero-info">
               <h1>{title}</h1>
-              <h3 className="product-hero-price">Consultar precio para talleres o distribuidores</h3>
+              <h3 className="product-hero-price">
+                Consultar precio para talleres o distribuidores
+              </h3>
               <div className="product-hero-actions">
                 <a
                   href={whatsappUrl}
@@ -214,10 +230,7 @@ export default async function ProductPage({
               <MessageCircle size={18} aria-hidden />
               Consultar por WhatsApp
             </a>
-            <a
-              href={mailUrl}
-              className="contact-button product-btn-outline"
-            >
+            <a href={mailUrl} className="contact-button product-btn-outline">
               <Mail size={18} aria-hidden />
               Consultar por email
             </a>
@@ -229,7 +242,6 @@ export default async function ProductPage({
           <ProductFooterShare productId={product.id} title={title} />
         </div>
       </section>
-
     </>
   );
 }

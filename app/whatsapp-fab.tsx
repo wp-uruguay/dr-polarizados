@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
 import { ArrowUp, Maximize2 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
 const WHATSAPP_PHONE = "5491168477185";
 
@@ -36,7 +36,10 @@ export default function WhatsappFab() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      const scrollPercentage =
+        (window.scrollY /
+          (document.documentElement.scrollHeight - window.innerHeight)) *
+        100;
       setShowActionButtons(scrollPercentage >= 50);
     };
 
@@ -62,11 +65,13 @@ export default function WhatsappFab() {
   return (
     <div className="wa-floating-wrap">
       {isExpanded && (
-        <div className="wa-chat-modal" role="dialog" aria-label="Chat de WhatsApp">
+        <div
+          className="wa-chat-modal"
+          role="dialog"
+          aria-label="Chat de WhatsApp"
+        >
           <div className="wa-chat-head">Atención al cliente</div>
-          <p className="wa-chat-bubble">
-            {greeting}, ¿cómo podemos ayudarte?
-          </p>
+          <p className="wa-chat-bubble">{greeting}, ¿cómo podemos ayudarte?</p>
           <label htmlFor="wa-message" className="wa-input-label">
             Mensaje
           </label>
@@ -101,7 +106,7 @@ export default function WhatsappFab() {
         <svg
           className="wa-fab-icon"
           viewBox="0 0 32 32"
-          aria-hidden
+          aria-hidden="true"
           focusable="false"
         >
           <path
@@ -111,7 +116,9 @@ export default function WhatsappFab() {
         </svg>
       </button>
 
-      <div className={`wa-action-buttons ${showActionButtons ? "is-visible" : ""}`}>
+      <div
+        className={`wa-action-buttons ${showActionButtons ? "is-visible" : ""}`}
+      >
         <button
           type="button"
           className="wa-action-btn"

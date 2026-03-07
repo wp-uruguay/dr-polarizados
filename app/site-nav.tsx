@@ -1,8 +1,8 @@
 "use client";
 
+import { ChevronDown, Package, ShoppingCart, Users } from "lucide-react";
 import Link from "next/link";
-import { ChevronDown, ShoppingCart, Users, Package } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function SiteNav() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -50,7 +50,10 @@ export default function SiteNav() {
   // Close on click outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
         setOpenDropdown(null);
       }
     };
@@ -70,8 +73,10 @@ export default function SiteNav() {
         onMouseLeave={closeMenu}
         onKeyDown={handleKeyDown}
         ref={dropdownRef}
+        role="none"
       >
         <button
+          type="button"
           className="nav-dropdown-toggle"
           onClick={toggleMenu}
           aria-expanded={isOpen}

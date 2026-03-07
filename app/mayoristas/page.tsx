@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default function MayoristasPage() {
-
   return (
     <section className="section">
       <div className="container grid grid-2 contact-layout">
@@ -16,12 +15,18 @@ export default function MayoristasPage() {
           <span className="kicker">Programa comercial</span>
           <h1>Mayoristas y Distribuidores</h1>
           <p className="lead">
-            Accede a una solución integral diseñada para negocios profesionales que
-            buscan expandir su catálogo de productos con opciones de calidad
+            Accede a una solución integral diseñada para negocios profesionales
+            que buscan expandir su catálogo de productos con opciones de calidad
             premium.
           </p>
 
-          <div style={{ marginTop: "2.5rem", lineHeight: 1.8, color: "var(--muted)" }}>
+          <div
+            style={{
+              marginTop: "2.5rem",
+              lineHeight: 1.8,
+              color: "var(--muted)",
+            }}
+          >
             <h3
               style={{
                 fontSize: "1.125rem",
@@ -137,10 +142,16 @@ export default function MayoristasPage() {
               borderTop: "1px solid var(--line)",
             }}
           >
-            <p style={{ fontSize: "0.95rem", color: "var(--muted)", lineHeight: 1.7 }}>
-              Completa el formulario con tus datos y nos pondremos en contacto para
-              discutir condiciones especiales, programas de capacitación y soluciones
-              a medida para tu negocio.
+            <p
+              style={{
+                fontSize: "0.95rem",
+                color: "var(--muted)",
+                lineHeight: 1.7,
+              }}
+            >
+              Completa el formulario con tus datos y nos pondremos en contacto
+              para discutir condiciones especiales, programas de capacitación y
+              soluciones a medida para tu negocio.
             </p>
           </div>
         </article>

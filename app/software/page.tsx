@@ -1,6 +1,6 @@
+import { CheckCircle2, MessageCircle } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Software | DR Polarizados",
@@ -56,14 +56,7 @@ export default function SoftwarePage() {
   return (
     <>
       <section className="hero hero-video">
-        <video
-          className="hero-video-bg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-        >
+        <video className="hero-video-bg" autoPlay muted loop playsInline>
           <source src="/videos/hero-catalogo.mp4" type="video/mp4" />
         </video>
         <div className="hero-video-overlay" />
@@ -71,11 +64,12 @@ export default function SoftwarePage() {
           <span className="kicker">Herramientas digitales</span>
           <h1>Software exclusivo para tu negocio</h1>
           <p className="lead">
-            En DR Polarizados le ofrecemos a nuestros clientes acceso a un software
-            exclusivo y diseñado a medida para que tengas control total de tu negocio.
-            Gestión de inventario, clientes y comunicaciones transaccionales o de
-            marketing, soporte inmediato y un asistente de IA entrenado para ayudarte
-            a mejorar tu negocio de polarizados o distribución.
+            En DR Polarizados le ofrecemos a nuestros clientes acceso a un
+            software exclusivo y diseñado a medida para que tengas control total
+            de tu negocio. Gestión de inventario, clientes y comunicaciones
+            transaccionales o de marketing, soporte inmediato y un asistente de
+            IA entrenado para ayudarte a mejorar tu negocio de polarizados o
+            distribución.
           </p>
         </div>
       </section>
@@ -83,10 +77,12 @@ export default function SoftwarePage() {
       <section className="section">
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-            <h2 style={{ marginBottom: "1rem" }}>Planes de acceso al software</h2>
+            <h2 style={{ marginBottom: "1rem" }}>
+              Planes de acceso al software
+            </h2>
             <p className="lead" style={{ margin: "0 auto" }}>
-              Elige el plan que mejor se adapta a tu negocio. A mayor compra, mayores
-              beneficios y funcionalidades disponibles.
+              Elige el plan que mejor se adapta a tu negocio. A mayor compra,
+              mayores beneficios y funcionalidades disponibles.
             </p>
           </div>
 
@@ -157,9 +153,9 @@ export default function SoftwarePage() {
                       gap: "0.75rem",
                     }}
                   >
-                    {tier.features.map((feature, idx) => (
+                    {tier.features.map((feature) => (
                       <li
-                        key={idx}
+                        key={feature}
                         style={{
                           display: "flex",
                           gap: "0.75rem",
@@ -188,7 +184,9 @@ export default function SoftwarePage() {
                     marginBottom: "1.5rem",
                   }}
                 >
-                  <p style={{ margin: 0, fontSize: "0.9rem", color: tier.color }}>
+                  <p
+                    style={{ margin: 0, fontSize: "0.9rem", color: tier.color }}
+                  >
                     <strong>{tier.benefit}</strong>
                   </p>
                 </div>
@@ -201,7 +199,6 @@ export default function SoftwarePage() {
                       flex: 1,
                       textAlign: "center",
                     }}
-
                   >
                     Solicitar acceso
                   </Link>
@@ -225,10 +222,17 @@ export default function SoftwarePage() {
         </div>
       </section>
 
-      <section className="section" style={{ backgroundColor: "var(--surface)" }}>
+      <section
+        className="section"
+        style={{ backgroundColor: "var(--surface)" }}
+      >
         <div className="container">
-          <div style={{ maxWidth: "640px", margin: "0 auto", textAlign: "center" }}>
-            <h2 style={{ marginBottom: "1rem" }}>¿Preguntas sobre el software?</h2>
+          <div
+            style={{ maxWidth: "640px", margin: "0 auto", textAlign: "center" }}
+          >
+            <h2 style={{ marginBottom: "1rem" }}>
+              ¿Preguntas sobre el software?
+            </h2>
             <p
               className="lead"
               style={{
@@ -236,8 +240,9 @@ export default function SoftwarePage() {
                 color: "var(--muted)",
               }}
             >
-              Nuestro equipo está disponible para ayudarte a elegir el plan perfecto
-              para tu negocio y resolver todas tus dudas sobre las funcionalidades.
+              Nuestro equipo está disponible para ayudarte a elegir el plan
+              perfecto para tu negocio y resolver todas tus dudas sobre las
+              funcionalidades.
             </p>
             <div className="software-cta-row">
               <Link href="/contacto" className="contact-button">

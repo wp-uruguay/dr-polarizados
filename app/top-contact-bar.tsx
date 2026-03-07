@@ -79,14 +79,17 @@ export default function TopContactBar() {
             <span className="top-separator" aria-hidden>
               |
             </span>
-            <a className="top-inline-link" href="mailto:ventas@drpolarizados.com">
+            <a
+              className="top-inline-link"
+              href="mailto:ventas@drpolarizados.com"
+            >
               <Mail size={14} aria-hidden />
               <span>ventas@drpolarizados.com</span>
             </a>
             <span className="top-separator" aria-hidden>
               |
             </span>
-            <div className="top-inline-social" aria-label="Redes sociales">
+            <nav className="top-inline-social" aria-label="Redes sociales">
               <a
                 href="https://www.facebook.com"
                 target="_blank"
@@ -119,7 +122,7 @@ export default function TopContactBar() {
               >
                 <XIcon size={14} />
               </a>
-            </div>
+            </nav>
           </div>
         </div>
       </div>
@@ -155,20 +158,40 @@ export default function TopContactBar() {
           </Link>
         </nav>
 
-        <div className="top-drawer-social" aria-label="Redes sociales">
-          <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+        <nav className="top-drawer-social" aria-label="Redes sociales">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Facebook"
+          >
             <Facebook size={16} aria-hidden />
           </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+          >
             <Instagram size={16} aria-hidden />
           </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
             <Linkedin size={16} aria-hidden />
           </a>
-          <a href="https://www.x.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
+          <a
+            href="https://www.x.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="X (Twitter)"
+          >
             <XIcon size={16} />
           </a>
-        </div>
+        </nav>
 
         <div className="top-drawer-divider" aria-hidden />
 

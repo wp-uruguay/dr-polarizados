@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Space_Grotesk } from "next/font/google";
+import Link from "next/link";
 import HeaderTools from "./header-tools";
+import SiteFooter from "./site-footer";
+import SiteNav from "./site-nav";
 import TopContactBar from "./top-contact-bar";
 import WhatsappFab from "./whatsapp-fab";
-import SiteNav from "./site-nav";
-import SiteFooter from "./site-footer";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -41,26 +41,24 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={spaceGrotesk.variable}
-      >
+      <body className={spaceGrotesk.variable}>
         <TopContactBar />
         <div className="app-frame">
           <div className="site-shell">
             <header className="site-header">
-                <div className="container nav-wrap">
-                  <Link href="/" className="brand" aria-label="Ir a inicio">
-                    <span className="brand-logo" aria-hidden />
-                  </Link>
-                  <SiteNav />
-                  <HeaderTools />
-                </div>
-              </header>
-              <main>{children}</main>
-              <SiteFooter />
-              <WhatsappFab />
-            </div>
+              <div className="container nav-wrap">
+                <Link href="/" className="brand" aria-label="Ir a inicio">
+                  <span className="brand-logo" aria-hidden />
+                </Link>
+                <SiteNav />
+                <HeaderTools />
+              </div>
+            </header>
+            <main>{children}</main>
+            <SiteFooter />
+            <WhatsappFab />
           </div>
+        </div>
       </body>
     </html>
   );

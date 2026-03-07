@@ -9,7 +9,9 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<ThemeMode>("dark");
 
   useEffect(() => {
-    const current = document.documentElement.dataset.theme as ThemeMode | undefined;
+    const current = document.documentElement.dataset.theme as
+      | ThemeMode
+      | undefined;
     if (current === "dark" || current === "light") {
       setTheme(current);
       return;
@@ -32,7 +34,11 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-label="Cambiar tema"
     >
-      {theme === "dark" ? <Sun size={16} aria-hidden /> : <Moon size={16} aria-hidden />}
+      {theme === "dark" ? (
+        <Sun size={16} aria-hidden />
+      ) : (
+        <Moon size={16} aria-hidden />
+      )}
     </button>
   );
 }

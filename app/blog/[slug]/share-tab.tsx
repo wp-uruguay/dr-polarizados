@@ -1,7 +1,14 @@
 "use client";
 
+import {
+  Facebook,
+  Linkedin,
+  Mail,
+  MessageCircle,
+  Share2,
+  Twitter,
+} from "lucide-react";
 import { useState } from "react";
-import { Share2, Facebook, Twitter, Linkedin, MessageCircle, Mail } from "lucide-react";
 
 interface ShareTabProps {
   slug: string;
@@ -58,6 +65,7 @@ export default function ShareTab({ slug, title }: ShareTabProps) {
       {/* Share Tab Floating Button */}
       <div className="share-tab-container">
         <button
+          type="button"
           className="share-tab-button"
           onClick={() => setIsOpen(!isOpen)}
           title="Compartir"
@@ -68,11 +76,18 @@ export default function ShareTab({ slug, title }: ShareTabProps) {
 
         {/* Overlay */}
         {isOpen && (
-          <div className="share-overlay" onClick={() => setIsOpen(false)} />
+          <button
+            type="button"
+            className="share-overlay"
+            aria-label="Cerrar menú de compartir"
+            onClick={() => setIsOpen(false)}
+          />
         )}
 
         {/* Share Menu */}
         {isOpen && (
+          // biome-ignore lint/a11y/noStaticElementInteractions: stop propagation only
+          // biome-ignore lint/a11y/useKeyWithClickEvents: stop propagation only
           <div className="share-menu" onClick={(e) => e.stopPropagation()}>
             {shareLinks.map((link) => {
               const IconComponent = link.icon;
@@ -83,9 +98,11 @@ export default function ShareTab({ slug, title }: ShareTabProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="share-link"
-                  style={{
-                    "--share-color": link.color,
-                  } as React.CSSProperties}
+                  style={
+                    {
+                      "--share-color": link.color,
+                    } as React.CSSProperties
+                  }
                   title={`Compartir en ${link.label}`}
                 >
                   <IconComponent size={18} />
