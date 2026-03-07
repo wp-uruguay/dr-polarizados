@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 import HeaderTools from "./header-tools";
 import SiteFooter from "./site-footer";
 import SiteNav from "./site-nav";
 import TopContactBar from "./top-contact-bar";
 import WhatsappFab from "./whatsapp-fab";
+import "@fontsource-variable/space-grotesk";
 import "./globals.css";
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +36,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={spaceGrotesk.variable}>
+      <body>
         <TopContactBar />
         <div className="app-frame">
           <div className="site-shell">
