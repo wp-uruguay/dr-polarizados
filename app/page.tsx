@@ -79,7 +79,7 @@ export default function Home() {
                 merecés un proveedor que sea un verdadero aliado de tu negocio.
               </li>
             </ul>
-            <p>En DP trabajamos para que todo eso sea posible.</p>
+            <p>En DR trabajamos para que todo eso sea posible.</p>
 
             <div className="cta-row">
               <Link href="/contacto" className="btn btn-primary">

@@ -29,8 +29,8 @@ export default function SiteFooter() {
               />
             </Link>
             <p className="footer-tagline">
-              Distribucion profesional de laminas de control solar de autos y
-              arquitectura para toda la Argentina.
+              Distribución profesional de láminas de control solar para autos y
+              arquitectura en toda la Argentina.
             </p>
           </div>
 

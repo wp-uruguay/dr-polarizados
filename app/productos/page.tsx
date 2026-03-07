@@ -65,13 +65,13 @@ export default function ProductosPage() {
         </video>
         <div className="hero-video-overlay" />
         <div className="container">
-          <span className="kicker">Catálogo DP</span>
+          <span className="kicker">Catálogo DR</span>
           <h1>Líneas de producto para instalación profesional.</h1>
           <div style={{ marginTop: "1.15rem", maxWidth: "64ch" }}>
             <p className="lead" style={{ marginTop: 0 }}>
               En DR ponemos un gran enfoque en encontrar y distribuir los
               productos de mejor relación calidad precio para que el margen de
-              instaladores y distribuidores sea el mejor! Recordá que ante
+              instaladores y distribuidores sea el mejor. Recordá que ante
               cualquier duda sobre nuestros productos estamos disponibles para
               atenderte por WhatsApp
             </p>
